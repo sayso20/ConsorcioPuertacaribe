@@ -12,8 +12,8 @@
   --yellow: #FFD700;
   --white: #FFFFFF;
   --light-gray: #F5F5F5;
-  --transition-speed: 0.3s;
-  --transition-smooth: 0.4s;
+  --transition-speed: 0.4s;
+  --transition-smooth: 0.5s;
 }
 
 /* ============================================
@@ -89,7 +89,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   position: relative;
-  transition: color var(--transition-speed) ease;
+  transition: color var(--transition-speed) ease-in-out;
 }
 
 .nav-links a::after {
@@ -100,7 +100,7 @@ body {
   width: 0;
   height: 2px;
   background: var(--bright-blue);
-  transition: width var(--transition-speed) ease;
+  transition: width var(--transition-speed) ease-in-out;
 }
 
 .nav-links a:hover {
@@ -122,7 +122,7 @@ body {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: all var(--transition-speed) ease;
+  transition: all var(--transition-smooth) ease-in-out;
   box-shadow: 0 4px 15px rgba(0, 168, 232, 0.3);
 }
 
@@ -165,7 +165,7 @@ body {
   background: linear-gradient(135deg, rgba(0, 168, 232, 0.2), rgba(255, 133, 51, 0.2));
   z-index: 1;
   opacity: 0;
-  transition: opacity var(--transition-speed) ease;
+  transition: opacity var(--transition-smooth) ease-in-out;
 }
 
 .hero-image-wrapper:hover::before {
@@ -219,6 +219,408 @@ body {
 }
 
 /* ============================================
+   AGENDA CULTURAL SECTION STYLES
+   ============================================ */
+.agenda-hero {
+  position: relative;
+  height: 400px;
+  background: linear-gradient(135deg, var(--navy) 0%, #0d3b66 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.agenda-hero-overlay {
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 168, 232, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.agenda-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+.agenda-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 48px;
+  color: var(--white);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.agenda-hero p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.agenda-cultural {
+  padding: 80px 60px;
+  background-color: var(--dark-bg);
+}
+
+.agenda-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.agenda-cultural h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  margin-bottom: 8px;
+  color: var(--white);
+  text-align: center;
+}
+
+.agenda-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Calendar Header Controls */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 20px;
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(0, 168, 232, 0.08);
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 168, 232, 0.2);
+}
+
+.btn-nav-month {
+  background: transparent;
+  border: none;
+  color: var(--bright-blue);
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-nav-month:hover {
+  background: rgba(0, 168, 232, 0.2);
+  color: var(--light-blue);
+}
+
+.current-month-year {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  min-width: 130px;
+  text-align: center;
+}
+
+.btn-today {
+  background: linear-gradient(135deg, var(--bright-blue), var(--light-blue));
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 2px 10px rgba(0, 168, 232, 0.3);
+}
+
+.btn-today:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 168, 232, 0.4);
+}
+
+/* Calendar Grid */
+.calendar-grid-wrapper {
+  background: rgba(0, 168, 232, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 168, 232, 0.15);
+  margin-bottom: 30px;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.weekday {
+  background: rgba(0, 168, 232, 0.2);
+  color: var(--bright-blue);
+  padding: 10px 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  user-select: none;
+}
+
+.calendar-day:hover:not(.empty) {
+  background: rgba(0, 168, 232, 0.15);
+  border-color: rgba(0, 168, 232, 0.4);
+  color: var(--bright-blue);
+  transform: scale(1.05);
+}
+
+.calendar-day.empty {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.1);
+  cursor: default;
+}
+
+.calendar-day.empty:hover {
+  background: transparent;
+  border: none;
+  transform: none;
+}
+
+.calendar-day.today {
+  background: linear-gradient(135deg, rgba(0, 168, 232, 0.35), rgba(0, 168, 232, 0.15));
+  border-color: var(--bright-blue);
+  color: var(--bright-blue);
+  font-weight: 800;
+  box-shadow: inset 0 0 15px rgba(0, 168, 232, 0.25);
+}
+
+.calendar-day.today:hover {
+  transform: scale(1.08);
+}
+
+/* Filters Section */
+.filters-section {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-search {
+  flex: 1;
+  min-width: 200px;
+  background: rgba(0, 168, 232, 0.08);
+  border: 1px solid rgba(0, 168, 232, 0.2);
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: var(--white);
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  transition: all 0.4s ease-in-out;
+}
+
+.filter-search::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.filter-search:focus {
+  outline: none;
+  border-color: var(--bright-blue);
+  background: rgba(0, 168, 232, 0.12);
+  box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.1);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-badge {
+  background: rgba(0, 168, 232, 0.1);
+  border: 1px solid rgba(0, 168, 232, 0.3);
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.filter-badge:hover {
+  background: rgba(0, 168, 232, 0.2);
+  border-color: var(--bright-blue);
+  color: var(--bright-blue);
+}
+
+.filter-badge.active {
+  background: linear-gradient(135deg, var(--bright-blue), var(--light-blue));
+  border-color: var(--bright-blue);
+  color: var(--white);
+  box-shadow: 0 2px 10px rgba(0, 168, 232, 0.3);
+}
+
+/* ============================================
+   POR QUE CONSULTAR SECTION STYLES
+   ============================================ */
+.por-que-consultar {
+  background: linear-gradient(135deg, var(--navy) 0%, #0d3b66 100%);
+  padding: 100px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.por-que-consultar::before {
+  content: '';
+  position: absolute;
+  bottom: -50%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 168, 232, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.por-que-consultar h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  margin-bottom: 60px;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+}
+
+.beneficios-agenda {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.beneficio-agenda {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-smooth) ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.beneficio-agenda::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 168, 232, 0.1), rgba(255, 133, 51, 0.1));
+  opacity: 0;
+  transition: opacity var(--transition-smooth) ease-in-out;
+}
+
+.beneficio-agenda:hover {
+  transform: translateY(-10px);
+  border-color: var(--bright-blue);
+  box-shadow: 0 20px 60px rgba(0, 168, 232, 0.3);
+}
+
+.beneficio-agenda:hover::before {
+  opacity: 1;
+}
+
+.beneficio-agenda-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.beneficio-agenda h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+}
+
+.beneficio-agenda p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
    COMO FUNCIONA SECTION STYLES
    ============================================ */
 .como-funciona {
@@ -255,7 +657,7 @@ body {
   border-radius: 20px;
   position: relative;
   overflow: hidden;
-  transition: all var(--transition-smooth) ease;
+  transition: all var(--transition-smooth) ease-in-out;
   border: 2px solid transparent;
 }
 
@@ -353,7 +755,7 @@ body {
   border-radius: 20px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
-  transition: all var(--transition-smooth) ease;
+  transition: all var(--transition-smooth) ease-in-out;
   position: relative;
   overflow: hidden;
 }
@@ -367,7 +769,7 @@ body {
   height: 100%;
   background: linear-gradient(135deg, rgba(0, 168, 232, 0.1), rgba(255, 133, 51, 0.1));
   opacity: 0;
-  transition: opacity var(--transition-smooth) ease;
+  transition: opacity var(--transition-smooth) ease-in-out;
 }
 
 .beneficio:hover {
@@ -484,7 +886,7 @@ body {
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   font-size: 14px;
-  transition: all var(--transition-speed) ease;
+  transition: all var(--transition-speed) ease-in-out;
   display: inline-block;
 }
 
@@ -552,12 +954,24 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .beneficios-agenda {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .footer-content {
     grid-template-columns: 1fr;
   }
 
   .nav-links {
     display: none;
+  }
+
+  .calendar-filters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .agenda-hero h1 {
+    font-size: 36px;
   }
 }
 
@@ -570,14 +984,93 @@ body {
   .como-funciona,
   .por-que,
   .respaldo,
-  .footer {
-    padding: 60px 30px;
+  .footer,
+  .agenda-cultural,
+  .por-que-consultar,
+  .agenda-hero {
+    padding: 50px 25px;
+  }
+
+  .agenda-wrapper {
+    padding: 0;
   }
 
   .hero-right h2,
   .como-funciona h2,
   .por-que h2,
-  .respaldo h2 {
+  .respaldo h2,
+  .agenda-cultural h2,
+  .por-que-consultar h2 {
+    font-size: 28px;
+  }
+
+  .agenda-hero h1 {
     font-size: 32px;
+  }
+
+  .agenda-hero {
+    height: 300px;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .calendar-nav {
+    justify-content: space-between;
+  }
+
+  .button-today {
+    width: 100%;
+  }
+
+  .calendar-grid-wrapper {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .calendar-weekdays {
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+
+  .weekday {
+    padding: 8px 0;
+    font-size: 11px;
+  }
+
+  .calendar-grid {
+    gap: 5px;
+  }
+
+  .calendar-day {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .filters-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .filter-search {
+    min-width: 100%;
+  }
+
+  .filter-buttons {
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .filter-badge {
+    font-size: 11px;
+    padding: 7px 12px;
+  }
+
+  .beneficios-agenda {
+    grid-template-columns: 1fr;
   }
 }
