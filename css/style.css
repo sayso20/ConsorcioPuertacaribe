@@ -1,0 +1,583 @@
+/* ============================================
+   PUERTA CARIBE - STYLESHEET
+   ============================================ */
+
+/* CSS Variables for Colors and Spacing */
+:root {
+  --navy: #0A2647;
+  --dark-bg: #1A1A1A;
+  --bright-blue: #00A8E8;
+  --light-blue: #5DADE2;
+  --orange: #FF8533;
+  --yellow: #FFD700;
+  --white: #FFFFFF;
+  --light-gray: #F5F5F5;
+  --transition-speed: 0.3s;
+  --transition-smooth: 0.4s;
+}
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--white);
+  background-color: var(--dark-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   NAVBAR STYLES
+   ============================================ */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  background-color: var(--navy);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--orange), var(--yellow), var(--bright-blue));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 24px;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.logo-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--white);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color var(--transition-speed) ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--bright-blue);
+  transition: width var(--transition-speed) ease;
+}
+
+.nav-links a:hover {
+  color: var(--bright-blue);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.btn-login {
+  background: linear-gradient(135deg, var(--bright-blue), var(--light-blue));
+  border: none;
+  padding: 12px 28px;
+  border-radius: 25px;
+  cursor: pointer;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 4px 15px rgba(0, 168, 232, 0.3);
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 168, 232, 0.5);
+}
+
+/* ============================================
+   HERO SECTION STYLES
+   ============================================ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  padding: 80px 60px;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #0d1b2a 100%);
+  align-items: center;
+}
+
+.hero-left {
+  position: relative;
+  animation: slideInLeft 1s ease-out;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 168, 232, 0.3);
+}
+
+.hero-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 168, 232, 0.2), rgba(255, 133, 51, 0.2));
+  z-index: 1;
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.hero-image-wrapper:hover::before {
+  opacity: 1;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+.hero-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--white);
+  padding: 10px 20px;
+  border-radius: 15px;
+  z-index: 2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.badge-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+}
+
+.hero-right {
+  animation: slideInRight 1s ease-out;
+}
+
+.hero-right h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+  margin-bottom: 25px;
+  color: var(--white);
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.hero-right p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: justify;
+}
+
+/* ============================================
+   COMO FUNCIONA SECTION STYLES
+   ============================================ */
+.como-funciona {
+  padding: 100px 60px;
+  background-color: var(--dark-bg);
+}
+
+.como-funciona h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  margin-bottom: 20px;
+  color: var(--white);
+  text-align: left;
+}
+
+.como-intro {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 50px;
+  max-width: 800px;
+}
+
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.paso {
+  background: linear-gradient(135deg, #1e3a5f 0%, #0d1b2a 100%);
+  padding: 40px 30px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth) ease;
+  border: 2px solid transparent;
+}
+
+.paso::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--bright-blue), var(--orange));
+}
+
+.paso:hover {
+  transform: translateY(-10px);
+  border-color: var(--bright-blue);
+  box-shadow: 0 20px 40px rgba(0, 168, 232, 0.3);
+}
+
+.paso-number {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 64px;
+  color: var(--bright-blue);
+  opacity: 0.2;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  line-height: 1;
+}
+
+.paso h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+}
+
+.paso p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   POR QUE SECTION STYLES
+   ============================================ */
+.por-que {
+  background: linear-gradient(135deg, var(--navy) 0%, #0d3b66 100%);
+  padding: 100px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.por-que::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 168, 232, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.por-que h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  margin-bottom: 60px;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+}
+
+.beneficios {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.beneficio {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 50px 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-smooth) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.beneficio::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 168, 232, 0.1), rgba(255, 133, 51, 0.1));
+  opacity: 0;
+  transition: opacity var(--transition-smooth) ease;
+}
+
+.beneficio:hover {
+  transform: scale(1.05);
+  border-color: var(--bright-blue);
+  box-shadow: 0 20px 60px rgba(0, 168, 232, 0.3);
+}
+
+.beneficio:hover::before {
+  opacity: 1;
+}
+
+.beneficio-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.beneficio p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--white);
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   RESPALDO SECTION STYLES
+   ============================================ */
+.respaldo {
+  padding: 100px 60px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--dark-bg) 0%, #0d1b2a 100%);
+  position: relative;
+}
+
+.respaldo-header {
+  margin-bottom: 40px;
+}
+
+.respaldo h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  margin-bottom: 30px;
+  color: var(--white);
+}
+
+.respaldo-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 50px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.respaldo p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.respaldo-image {
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.respaldo-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+.footer {
+  background: var(--navy);
+  padding: 50px 60px;
+  position: relative;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all var(--transition-speed) ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--bright-blue);
+  transform: translateX(5px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .pasos {
+    grid-template-columns: 1fr;
+  }
+
+  .beneficios {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+
+  .hero,
+  .como-funciona,
+  .por-que,
+  .respaldo,
+  .footer {
+    padding: 60px 30px;
+  }
+
+  .hero-right h2,
+  .como-funciona h2,
+  .por-que h2,
+  .respaldo h2 {
+    font-size: 32px;
+  }
+}
