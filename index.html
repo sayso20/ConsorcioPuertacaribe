@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puerta Caribe - Consorcio Barranquilla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0A2647;
+      --dark-bg: #1A1A1A;
+      --bright-blue: #00A8E8;
+      --light-blue: #5DADE2;
+      --orange: #FF8533;
+      --yellow: #FFD700;
+      --white: #FFFFFF;
+      --light-gray: #F5F5F5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--white);
+      background-color: var(--dark-bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      background-color: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--orange), var(--yellow), var(--bright-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 24px;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--bright-blue);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--bright-blue);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-login {
+      background: linear-gradient(135deg, var(--bright-blue), var(--light-blue));
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      cursor: pointer;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 168, 232, 0.3);
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 168, 232, 0.5);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding: 80px 60px;
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #0d1b2a 100%);
+      align-items: center;
+    }
+
+    .hero-left {
+      position: relative;
+      animation: slideInLeft 1s ease-out;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 168, 232, 0.3);
+    }
+
+    .hero-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 168, 232, 0.2), rgba(255, 133, 51, 0.2));
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-image-wrapper:hover::before {
+      opacity: 1;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+    }
+
+    .hero-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--white);
+      padding: 10px 20px;
+      border-radius: 15px;
+      z-index: 2;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .hero-right {
+      animation: slideInRight 1s ease-out;
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .hero-right h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 42px;
+      margin-bottom: 25px;
+      color: var(--white);
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+
+    .hero-right p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+      text-align: justify;
+    }
+
+    /* COMO FUNCIONA SECTION */
+    .como-funciona {
+      padding: 100px 60px;
+      background-color: var(--dark-bg);
+    }
+
+    .como-funciona h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 38px;
+      margin-bottom: 20px;
+      color: var(--white);
+      text-align: left;
+    }
+
+    .como-intro {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 50px;
+      max-width: 800px;
+    }
+
+    .pasos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .paso {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0d1b2a 100%);
+      padding: 40px 30px;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+
+    .paso::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--bright-blue), var(--orange));
+    }
+
+    .paso:hover {
+      transform: translateY(-10px);
+      border-color: var(--bright-blue);
+      box-shadow: 0 20px 40px rgba(0, 168, 232, 0.3);
+    }
+
+    .paso-number {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 64px;
+      color: var(--bright-blue);
+      opacity: 0.2;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      line-height: 1;
+    }
+
+    .paso h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+
+    .paso p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.8);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* POR QUE SECTION */
+    .por-que {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3b66 100%);
+      padding: 100px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .por-que::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 168, 232, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .por-que h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 38px;
+      margin-bottom: 60px;
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+
+    .beneficios {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .beneficio {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 50px 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .beneficio::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 168, 232, 0.1), rgba(255, 133, 51, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .beneficio:hover {
+      transform: scale(1.05);
+      border-color: var(--bright-blue);
+      box-shadow: 0 20px 60px rgba(0, 168, 232, 0.3);
+    }
+
+    .beneficio:hover::before {
+      opacity: 1;
+    }
+
+    .beneficio-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .beneficio p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--white);
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* RESPALDO SECTION */
+    .respaldo {
+      padding: 100px 60px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--dark-bg) 0%, #0d1b2a 100%);
+      position: relative;
+    }
+
+    .respaldo-header {
+      margin-bottom: 40px;
+    }
+
+    .respaldo h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 38px;
+      margin-bottom: 30px;
+      color: var(--white);
+    }
+
+    .respaldo-content {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 50px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .respaldo p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .respaldo-image {
+      width: 100%;
+      max-width: 1200px;
+      margin: 50px auto 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .respaldo-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy);
+      padding: 50px 60px;
+      position: relative;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: var(--bright-blue);
+      transform: translateX(5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .pasos {
+        grid-template-columns: 1fr;
+      }
+
+      .beneficios {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 30px;
+      }
+
+      .hero,
+      .como-funciona,
+      .por-que,
+      .respaldo,
+      .footer {
+        padding: 60px 30px;
+      }
+
+      .hero-right h2,
+      .como-funciona h2,
+      .por-que h2,
+      .respaldo h2 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo-container">
+      <div class="logo-icon">🌊</div>
+      <div class="logo-text">PUERTA CARIBE</div>
+    </div>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#descubre">Descubre Barranquilla</a></li>
+        <li><a href="#agenda">Agenda Cultural</a></li>
+        <li><a href="#servicios">Servicios Turísticos</a></li>
+        <li><a href="#sostenible">Turismo Sostenible</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+      </ul>
+    </nav>
+
+    <button class="btn-login">Iniciar sesión</button>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-image-wrapper">
+        <div class="hero-badge">
+          <div class="badge-text">Welcome to</div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=800&h=600&fit=crop" alt="Consorcio Puerta Caribe Barranquilla" class="hero-image">
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <h2>¿QUIÉNES SOMOS?</h2>
+      <p>
+        Somos Puerta Caribe, la plataforma oficial de experiencias turísticas de la región Caribe colombiana. Nuestra misión es conectar viajeros con prestadores de servicios turísticos verificados, ayudándote a descubrir, planear y reservar todas las experiencias auténticas que el Caribe Atlántico colombiano tiene para ofrecer.
+      </p>
+      <br>
+      <p>
+        Como plataforma respaldada por entidades de turismo del Atlántico, de una forma segura, confiable y sin complicaciones, garantizamos la verdadera esencia de nuestro territorio, su riqueza cultural y la alegría que representa alcanzar y visitar la bella Barranquilla, su riqueza natural, tradiciones, gastronomía y los paisajes que adornan la puerta dorada del Caribe Colombiano.
+      </p>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="como-funciona" id="nosotros">
+    <h2>¿CÓMO FUNCIONA?</h2>
+    <p class="como-intro">En Puerta Caribe todo empieza con un clic:</p>
+
+    <div class="pasos">
+      <div class="paso">
+        <div class="paso-number">1</div>
+        <h3>Descubre y elige</h3>
+        <p>Explora, compara y conoce a detalle experiencias, eventos, planes y actividades turísticas que se ajustan a tus intereses y presupuesto. Navega por categorías como gastronomía, cultura, naturaleza, rutas patrimoniales y eventos de turismo de negocios. Y elige la experiencia ideal para vivir tu destino.</p>
+      </div>
+
+      <div class="paso">
+        <div class="paso-number">2</div>
+        <h3>Reserva fácil y segura</h3>
+        <p>Selecciona la fecha y la cantidad de personas para la experiencia que deseas. Realiza tu reserva de forma clara, segura y confiable y recibe la confirmación directamente en tu correo electrónico, todo en un sólo lugar.</p>
+      </div>
+
+      <div class="paso">
+        <div class="paso-number">3</div>
+        <h3>Disfruta y comparte</h3>
+        <p>Vive experiencias auténticas junto a operadores turísticos verificados y guías locales. Descubre la cultura, la gastronomía y los paisajes de Barranquilla y el Atlántico, y comparte tus recuerdos, fotos y opiniones con otros viajeros.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 60px; font-size: 16px; line-height: 1.8; color: rgba(255, 255, 255, 0.8);">
+      Cada experiencia disponible en Puerta Caribe ha sido previamente verificada y cuenta con el respaldo de instituciones aliadas garantizando la calidad, la seguridad y una experiencia confiable para todos los visitantes.
+    </p>
+  </section>
+
+  <!-- POR QUE RESERVAR -->
+  <section class="por-que">
+    <h2>¿POR QUÉ RESERVAR CON PUERTA CARIBE?</h2>
+
+    <div class="beneficios">
+      <div class="beneficio">
+        <div class="beneficio-icon">🏛️</div>
+        <p>Plataforma oficial del destino turístico de Barranquilla y el Atlántico, garantizando información actualizada y confiable.</p>
+      </div>
+
+      <div class="beneficio">
+        <div class="beneficio-icon">✅</div>
+        <p>Experiencias auténticas y verificadas, con operadores inscritos y respaldadas por prestadores turísticos locales certificados.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESPALDO -->
+  <section class="respaldo">
+    <div class="respaldo-header">
+      <h2>¿QUIÉNES NOS RESPALDAN?</h2>
+    </div>
+
+    <div class="respaldo-content">
+      <p>
+        Visit Barranquilla y el Atlántico es una iniciativa desarrollada en el marco del Programa de Turismo y Promoción del Destino Barranquilla para el Trabajo, formulado por el Consorcio Barranquilla Dorada y financiado por la Secretaría de Desarrollo del Distrito de Barranquilla.
+      </p>
+      <p>
+        Este respaldo institucional garantiza que cada experiencia, actividad y servicio publicado en la plataforma es chequeado directamente de fuentes verificadas, alineado con las directrices de las entidades de turismo del departamento del Atlántico.
+      </p>
+    </div>
+
+    <div class="respaldo-image">
+      <img src="https://images.unsplash.com/photo-1555880422-5b4d63b9f8be?w=1200&h=400&fit=crop" alt="Barranquilla Caribe">
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Links de interés</h3>
+        <div class="footer-links">
+          <a href="#terminos">Términos y condiciones</a>
+          <a href="#politicas">Políticas de privacidad</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Avalado por:</h3>
+        <div class="footer-links">
+          <a href="#">Secretaría de Desarrollo</a>
+          <a href="#">Consorcio Barranquilla Dorada</a>
+          <a href="#">Visit Barranquilla</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <div class="footer-links">
+          <a href="mailto:info@puertacaribe.com">info@puertacaribe.com</a>
+          <a href="tel:+57">+57 (5) 123 4567</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 Puerta Caribe - Todos los derechos reservados | Barranquilla, Colombia</p>
+    </div>
+  </footer>
+
+</body>
+</html>
