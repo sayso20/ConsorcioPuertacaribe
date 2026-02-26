@@ -18,12 +18,14 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo-container">
-      <div class="logo-icon"><img src="assets/logos/logosimple.png" alt="Puerta Caribe Logo" style="height: 100%; width: auto;"></div>
+      <a href="landing.html">
+        <div class="logo-icon"><img src="assets/logos/logosimple.png" alt="Puerta Caribe Logo" style="height: 100%; width: auto;"></div>
+      </a>
     </div>
 
     <nav>
       <ul class="nav-links">
-        <li><a href="descubre.html">Descubre Barranquilla</a></li>
+        <li><a href="descubre.html" class="active">Descubre Barranquilla</a></li>
         <li><a href="agenda.html">Agenda Cultural</a></li>
         <li><a href="servicios.html">Servicios Turísticos</a></li>
         <li><a href="sostenible.html">Turismo Sostenible</a></li>
@@ -31,33 +33,40 @@
       </ul>
     </nav>
 
-    <button class="btn-login">Iniciar sesión</button>
+    <div class="navbar-actions">
+      <a href="carrito.html" class="btn-cart">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+      </a>
+      <a href="perfil.html" class="btn-login">Iniciar sesión</a>
+    </div>
   </header>
 
-  <!-- BANNER PRINCIPAL DESCUBRE -->
-  <section class="descubre-banner" id="descubre">
-    <div class="banner-image-container">
-      <img src="assets/banner/descubre_banner.jpg" alt="Carnaval de Barranquilla - Experiencia cultural vibrante" class="banner-img-animated">
-      <div class="banner-overlay"></div>
+  <!-- BANNER HERO DESCUBRE -->
+  <section class="descubre-hero hero-parallax" id="descubre-hero">
+    <div class="parallax-bg">
+      <img class="parallax-image" src="assets/banner/desc_barranquilla.png" alt="Descubre Barranquilla">
+    </div>
+    <div class="descubre-hero-overlay"></div>
+    <div class="descubre-hero-content">
+      <h1>DESCUBRE BARRANQUILLA</h1>
+      <p>Explora la puerta de oro de Colombia y vive experiencias auténticas del Caribe</p>
     </div>
   </section>
 
   <!-- BARRANQUILLA Y EL ATLANTICO -->
-  <section class="descubre-hero">
-    <div class="descubre-hero-container">
-      <div class="descubre-hero-image">
-        <img src="assets/banner/carnavalbanner.jpg" alt="Carnaval de Barranquilla - Cultura vibrante" loading="lazy">
-      </div>
-      <div class="descubre-hero-content">
-        <h1>BARRANQUILLA Y EL ATLANTICO</h1>
-        <p class="descubre-intro">ES UNA CIUDAD VIBRANTE</p>
-        <p>
-          DONDE LA CULTURA, LA MÚSICA Y LA ALEGRÍA SE VIVEN TODOS LOS DÍAS. UBICADA A ORILLAS DEL RÍO MAGDALENA Y ABIERTA AL MAR CARIBE, ES UN DESTINO QUE COMBINA TRADICIÓN, MODERNIDAD Y DIVERSIDAD CULTURAL.
-        </p>
-        <p>
-          CONOCIDA COMO LA PUERTA DE ORO DE COLOMBIA, BARRANQUILLA INVITA A DESCUBRIR SU HISTORIA, SU GENTE Y SUS EXPRESIONES CULTURALES, RECONOCIDAS A NIVEL NACIONAL E INTERNACIONAL, COMO EL CARNAVAL DE BARRANQUILLA, PATRIMONIO CULTURAL INMATERIAL DE LA HUMANIDAD.
-        </p>
-      </div>
+  <section class="descubre-info">
+    <div class="descubre-info-container">
+      <h2>BARRANQUILLA Y EL ATLÁNTICO</h2>
+      <p>
+        Es una ciudad vibrante donde la cultura, la música y la alegría se viven todos los días. Ubicada a orillas del río Magdalena y abierta al mar Caribe, es un destino que combina tradición, modernidad y diversidad cultural.
+      </p>
+      <p>
+        Conocida como la Puerta de Oro de Colombia, Barranquilla invita a descubrir su historia, su gente y sus expresiones culturales, reconocidas a nivel nacional e internacional, como el Carnaval de Barranquilla, Patrimonio Cultural Inmaterial de la Humanidad.
+      </p>
     </div>
   </section>
 
@@ -87,7 +96,6 @@
           <h3>Barranquilla,<br>Naturaleza y Entorno</h3>
           <p class="card-subtitle">El río Magdalena y su malecón</p>
           <p class="card-description">Playas cercanas y ecosistemas costeros<br>Manglares y espacios naturales del Atlántico.</p>
-          <span class="card-cta">¡Turismo de naturaleza y ecoturismo!</span>
         </div>
       </div>
 
@@ -100,7 +108,7 @@
         <div class="card-content">
           <h3>Barranquilla,<br>Gastronomía</h3>
           <p class="card-subtitle">Platos tradicionales<br>Sabores del Caribe</p>
-          <p class="card-description">La identidad culinaria de Barranquilla y su región.</p>
+          <p class="card-description">Propuestas contemporáneas<br>La identidad culinaria de Barranquilla y su región.</p>
         </div>
       </div>
 
@@ -112,9 +120,9 @@
         </div>
         <div class="card-overlay"></div>
         <div class="card-content">
-          <h3>Barranquilla,<br>Gastronomía</h3>
-          <p class="card-subtitle">Platos tradicionales<br>Sabores del Caribe</p>
-          <p class="card-description">Propuestas contemporáneas<br>La diversidad culinaria de Barranquilla y su región.</p>
+          <h3>Barranquilla,<br>Eventos y Experiencias</h3>
+          <p class="card-subtitle">Carnaval de Barranquilla<br>Festivales y celebraciones</p>
+          <p class="card-description">Conciertos, muestras folclóricas<br>La alegría del Caribe colombiano.</p>
         </div>
       </div>
     </div>
@@ -150,9 +158,90 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© 2024 Puerta Caribe - Todos los derechos reservados | Barranquilla, Colombia</p>
+      <p>© 2026 Puerta Caribe - Todos los derechos reservados | Barranquilla, Colombia</p>
     </div>
   </footer>
+
+  <!-- MODAL LOGIN/REGISTRO -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-container">
+      <button class="modal-close" id="closeModal">&times;</button>
+      
+      <!-- Header del modal -->
+      <div class="modal-header">
+        <h2>MI PERFIL</h2>
+        <div class="breadcrumb">PUERTACARIBE > MI PERFIL</div>
+      </div>
+
+      <!-- Pestañas -->
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="login">INICIAR SESIÓN</button>
+        <button class="tab-btn" data-tab="register">REGISTRAR</button>
+      </div>
+
+      <!-- Contenido Iniciar Sesión -->
+      <div class="tab-content active" id="login">
+        <form class="login-form" id="loginForm">
+          <div class="form-group">
+            <input type="text" placeholder="NOMBRE DE USUARIO O CORREO" required>
+          </div>
+          <div class="form-group password-group">
+            <input type="password" placeholder="CONTRASEÑA" required>
+            <button type="button" class="toggle-password">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <a href="recuperar-contrasena.html" class="forgot-password">¿Olvidaste tu contraseña?</a>
+          <button type="submit" class="btn-submit">INICIAR SESIÓN</button>
+        </form>
+      </div>
+
+      <!-- Contenido Registrar -->
+      <div class="tab-content" id="register">
+        <form class="register-form" id="registerForm">
+          <div class="form-group">
+            <input type="text" placeholder="NOMBRE DE USUARIO" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="DIRECCIÓN CORREO ELECTRÓNICO" required>
+          </div>
+          <div class="form-group password-group">
+            <input type="password" placeholder="CONTRASEÑA" required>
+            <button type="button" class="toggle-password">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="NOMBRE" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="APELLIDO" required>
+          </div>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" required>
+              <span class="checkmark"></span>
+              ACEPTO LA POLÍTICA DE PRIVACIDAD
+            </label>
+          </div>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" required>
+              <span class="checkmark"></span>
+              ACEPTO LOS TÉRMINOS Y CONDICIONES
+            </label>
+          </div>
+          <button type="submit" class="btn-submit">REGISTRAR</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <script src="js/script.js"></script>
 </body>

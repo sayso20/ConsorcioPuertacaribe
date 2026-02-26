@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Puerta Caribe - Mi cuenta de usuario.">
+  <title>Mi Cuenta - Puerta Caribe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo-container">
+      <a href="landing.html">
+        <div class="logo-icon"><img src="assets/logos/logosimple.png" alt="Puerta Caribe Logo" style="height: 100%; width: auto;"></div>
+      </a>
+    </div>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="descubre.html">Descubre Barranquilla</a></li>
+        <li><a href="agenda.html">Agenda Cultural</a></li>
+        <li><a href="servicios.html">Servicios Turísticos</a></li>
+        <li><a href="sostenible.html">Turismo Sostenible</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+
+    <div class="navbar-actions">
+      <a href="carrito.html" class="btn-cart">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+      </a>
+      <a href="mi-cuenta.html" class="btn-login" id="userNameBtn">Mi Cuenta</a>
+    </div>
+  </header>
+
+  <!-- HERO MI CUENTA -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>MI CUENTA</h1>
+      <div class="breadcrumb">PUERTACARIBE > MI CUENTA</div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO MI CUENTA -->
+  <section class="mi-cuenta-content">
+    <div class="mi-cuenta-container">
+      
+      <div class="mi-cuenta-welcome">
+        <h2>¡Bienvenido, <span id="welcomeUserName">Usuario</span>!</h2>
+        <p>Gestiona tu cuenta y revisa tus reservas</p>
+      </div>
+
+      <div class="mi-cuenta-grid">
+        <a href="#" class="mi-cuenta-card">
+          <div class="mi-cuenta-card-icon">👤</div>
+          <h3>Mis Datos</h3>
+          <p>Actualiza tu información personal y de contacto</p>
+        </a>
+
+        <a href="#" class="mi-cuenta-card">
+          <div class="mi-cuenta-card-icon">📋</div>
+          <h3>Mis Reservas</h3>
+          <p>Revisa el historial de tus reservas y experiencias</p>
+        </a>
+
+        <a href="#" class="mi-cuenta-card">
+          <div class="mi-cuenta-card-icon">❤️</div>
+          <h3>Mis Favoritos</h3>
+          <p>Experiencias que has guardado para más tarde</p>
+        </a>
+
+        <a href="#" class="mi-cuenta-card">
+          <div class="mi-cuenta-card-icon">🔒</div>
+          <h3>Seguridad</h3>
+          <p>Cambia tu contraseña y configuración de seguridad</p>
+        </a>
+      </div>
+
+      <div style="text-align: center;">
+        <a href="#" class="btn-cerrar-sesion" id="logoutBtn">CERRAR SESIÓN</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section footer-disclaimer">
+        <p>CADA EXPERIENCIA, ACTIVIDAD O SERVICIO PUBLICADO EN LA PLATAFORMA ES OPERADO DIRECTAMENTE POR TERCEROS, PREVIAMENTE VERIFICADOS, Y CUENTA CON EL RESPALDO INSTITUCIONAL Y LA VALIDACIÓN DE CALIDAD DE LAS ENTIDADES TURÍSTICAS Y CULTURALES DE BARRANQUILLA Y EL DEPARTAMENTO DEL ATLÁNTICO.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>LINKS DE INTERÉS</h3>
+        <div class="footer-links">
+          <a href="#terminos">TÉRMINOS Y CONDICIONES</a>
+          <a href="#politicas">POLÍTICAS DE PRIVACIDAD</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>AVALADO POR:</h3>
+        <div class="footer-logos">
+          <!-- Logos de entidades -->
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Puerta Caribe - Todos los derechos reservados | Barranquilla, Colombia</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Verificar autenticación y mostrar datos del usuario
+    document.addEventListener('DOMContentLoaded', function() {
+      const session = AuthService.getSession();
+      
+      if (!session) {
+        // Si no hay sesión, redirigir a login
+        window.location.href = 'perfil.html';
+        return;
+      }
+
+      // Mostrar nombre del usuario
+      const welcomeName = document.getElementById('welcomeUserName');
+      if (welcomeName) {
+        welcomeName.textContent = session.nombre || session.username;
+      }
+
+      // Configurar botón de logout
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          AuthService.logout();
+          window.location.href = 'index.html';
+        });
+      }
+
+      // Manejar tarjetas de cuenta (en desarrollo)
+      const cuentaCards = document.querySelectorAll('.mi-cuenta-card');
+      cuentaCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          const cardTitle = this.querySelector('h3').textContent;
+          alert(`${cardTitle}\n\nEsta funcionalidad estará disponible próximamente.`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

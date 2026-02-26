@@ -527,12 +527,483 @@ function initializeHeroParallax() {
 }
 
 /* ============================================
-   BUTTON INTERACTIONS
+   MODAL LOGIN/REGISTRO
    ============================================ */
+const loginModal = document.getElementById('loginModal');
+const closeModalBtn = document.getElementById('closeModal');
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+const togglePasswordBtns = document.querySelectorAll('.toggle-password');
+
+// Abrir modal
 const loginBtn = document.querySelector('.btn-login');
-if (loginBtn) {
+if (loginBtn && loginModal) {
     loginBtn.addEventListener('click', function() {
-        console.log('Botón de iniciar sesión presionado.');
-        // Add your login logic here
+        loginModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
     });
 }
+
+// Cerrar modal con botón X
+if (closeModalBtn && loginModal) {
+    closeModalBtn.addEventListener('click', function() {
+        loginModal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+}
+
+// Cerrar modal al hacer clic fuera
+if (loginModal) {
+    loginModal.addEventListener('click', function(e) {
+        if (e.target === loginModal) {
+            loginModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Cerrar modal con tecla Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && loginModal && loginModal.classList.contains('active')) {
+        loginModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Cambiar entre pestañas
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const targetTab = this.getAttribute('data-tab');
+        
+        // Remover active de todos los botones y contenidos
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Agregar active al botón clickeado y su contenido correspondiente
+        this.classList.add('active');
+        document.getElementById(targetTab).classList.add('active');
+    });
+});
+
+// Toggle mostrar/ocultar contraseña
+togglePasswordBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const input = this.parentElement.querySelector('input');
+        if (input.type === 'password') {
+            input.type = 'text';
+            this.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>`;
+        } else {
+            input.type = 'password';
+            this.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>`;
+        }
+    });
+});
+
+/* ============================================
+   SISTEMA DE AUTENTICACIÓN LOCAL
+   ============================================
+   Esta lógica funciona con localStorage.
+   Para conectar a un backend real, solo hay que:
+   1. Reemplazar las funciones dentro de AuthService
+   2. Cambiar localStorage por llamadas fetch/axios
+   ============================================ */
+
+const AuthService = {
+    // Clave para almacenar usuarios en localStorage
+    USERS_KEY: 'puertacaribe_users',
+    SESSION_KEY: 'puertacaribe_session',
+
+    // Obtener todos los usuarios registrados
+    getUsers: function() {
+        const users = localStorage.getItem(this.USERS_KEY);
+        return users ? JSON.parse(users) : [];
+    },
+
+    // Guardar usuarios
+    saveUsers: function(users) {
+        localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
+    },
+
+    // Registrar nuevo usuario
+    register: function(userData) {
+        return new Promise((resolve, reject) => {
+            // Simular delay de red
+            setTimeout(() => {
+                const users = this.getUsers();
+                
+                // Verificar si el usuario ya existe
+                const existingUser = users.find(u => 
+                    u.username === userData.username || u.email === userData.email
+                );
+                
+                if (existingUser) {
+                    reject({ success: false, message: 'El usuario o correo ya existe' });
+                    return;
+                }
+
+                // Crear nuevo usuario
+                const newUser = {
+                    id: Date.now(),
+                    username: userData.username,
+                    email: userData.email,
+                    password: userData.password, // En producción: NUNCA guardar en texto plano
+                    nombre: userData.nombre,
+                    apellido: userData.apellido,
+                    createdAt: new Date().toISOString()
+                };
+
+                users.push(newUser);
+                this.saveUsers(users);
+
+                // Auto-login después del registro
+                this.setSession(newUser);
+
+                resolve({ 
+                    success: true, 
+                    message: 'Registro exitoso', 
+                    user: { ...newUser, password: undefined } 
+                });
+            }, 500);
+        });
+    },
+
+    // Iniciar sesión
+    login: function(credentials) {
+        return new Promise((resolve, reject) => {
+            // Simular delay de red
+            setTimeout(() => {
+                const users = this.getUsers();
+                
+                // Buscar usuario por username o email
+                const user = users.find(u => 
+                    (u.username === credentials.usernameOrEmail || 
+                     u.email === credentials.usernameOrEmail) &&
+                    u.password === credentials.password
+                );
+
+                if (!user) {
+                    reject({ success: false, message: 'Usuario o contraseña incorrectos' });
+                    return;
+                }
+
+                // Guardar sesión
+                this.setSession(user);
+
+                resolve({ 
+                    success: true, 
+                    message: 'Inicio de sesión exitoso', 
+                    user: { ...user, password: undefined } 
+                });
+            }, 500);
+        });
+    },
+
+    // Cerrar sesión
+    logout: function() {
+        localStorage.removeItem(this.SESSION_KEY);
+        this.updateUI();
+        return { success: true, message: 'Sesión cerrada' };
+    },
+
+    // Establecer sesión
+    setSession: function(user) {
+        const session = {
+            userId: user.id,
+            username: user.username,
+            nombre: user.nombre,
+            apellido: user.apellido,
+            email: user.email,
+            loggedInAt: new Date().toISOString()
+        };
+        localStorage.setItem(this.SESSION_KEY, JSON.stringify(session));
+    },
+
+    // Obtener sesión actual
+    getSession: function() {
+        const session = localStorage.getItem(this.SESSION_KEY);
+        return session ? JSON.parse(session) : null;
+    },
+
+    // Verificar si hay sesión activa
+    isAuthenticated: function() {
+        return this.getSession() !== null;
+    },
+
+    // Obtener usuario actual
+    getCurrentUser: function() {
+        return this.getSession();
+    },
+
+    // Actualizar UI según estado de autenticación
+    updateUI: function() {
+        const loginBtn = document.querySelector('.btn-login');
+        const session = this.getSession();
+
+        if (loginBtn) {
+            if (session) {
+                // Usuario logueado
+                loginBtn.textContent = session.nombre || session.username;
+                loginBtn.href = 'mi-cuenta.html';
+                
+                // Agregar botón de cerrar sesión si no existe
+                let logoutBtn = document.querySelector('.btn-logout');
+                if (!logoutBtn) {
+                    logoutBtn = document.createElement('a');
+                    logoutBtn.className = 'btn-logout';
+                    logoutBtn.href = '#';
+                    logoutBtn.textContent = 'Salir';
+                    logoutBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        AuthService.logout();
+                        window.location.href = 'index.html';
+                    });
+                    loginBtn.parentNode.insertBefore(logoutBtn, loginBtn.nextSibling);
+                }
+            } else {
+                // Usuario no logueado
+                loginBtn.textContent = 'Iniciar sesión';
+                loginBtn.href = 'perfil.html';
+                
+                // Remover botón de logout si existe
+                const logoutBtn = document.querySelector('.btn-logout');
+                if (logoutBtn) {
+                    logoutBtn.remove();
+                }
+            }
+        }
+    }
+};
+
+// Inicializar UI al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    AuthService.updateUI();
+});
+
+// Formularios de autenticación
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+
+if (loginForm) {
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const usernameOrEmail = this.querySelector('input[type="text"]').value;
+        const password = this.querySelector('input[type="password"]').value;
+        const remember = this.querySelector('input[type="checkbox"]')?.checked || false;
+
+        // Mostrar loading (soporta ambos selectores de botón)
+        const submitBtn = this.querySelector('.perfil-btn-submit') || this.querySelector('.btn-submit');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'INICIANDO...';
+        submitBtn.disabled = true;
+
+        AuthService.login({ usernameOrEmail, password, remember })
+            .then(response => {
+                console.log('Login exitoso:', response);
+                // Cerrar modal si existe
+                const modal = document.getElementById('loginModal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                window.location.href = 'login-exito.html';
+            })
+            .catch(error => {
+                console.error('Error de login:', error);
+                alert(error.message || 'Error al iniciar sesión');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+    });
+}
+
+if (registerForm) {
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const inputs = this.querySelectorAll('input');
+        const userData = {
+            username: inputs[0].value,
+            email: inputs[1].value,
+            password: inputs[2].value,
+            nombre: inputs[3].value,
+            apellido: inputs[4].value
+        };
+
+        // Verificar checkboxes de políticas
+        const checkboxes = this.querySelectorAll('input[type="checkbox"]');
+        const politicaPrivacidad = checkboxes[0]?.checked;
+        const terminosCondiciones = checkboxes[1]?.checked;
+
+        if (!politicaPrivacidad || !terminosCondiciones) {
+            alert('Debes aceptar la política de privacidad y los términos y condiciones');
+            return;
+        }
+
+        // Mostrar loading (soporta ambos selectores de botón)
+        const submitBtn = this.querySelector('.perfil-btn-submit') || this.querySelector('.btn-submit');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'REGISTRANDO...';
+        submitBtn.disabled = true;
+
+        AuthService.register(userData)
+            .then(response => {
+                console.log('Registro exitoso:', response);
+                // Cerrar modal si existe
+                const modal = document.getElementById('loginModal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                window.location.href = 'login-exito.html';
+            })
+            .catch(error => {
+                console.error('Error de registro:', error);
+                alert(error.message || 'Error al registrar');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+    });
+}
+
+/* ============================================
+   PÁGINA DE PERFIL - PESTAÑAS
+   ============================================ */
+const perfilTabBtns = document.querySelectorAll('.perfil-tab-btn');
+const perfilTabContents = document.querySelectorAll('.perfil-tab-content');
+
+// Cambiar entre pestañas en página de perfil
+perfilTabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const targetTab = this.getAttribute('data-tab');
+        
+        // Remover active de todos los botones y contenidos
+        perfilTabBtns.forEach(b => b.classList.remove('active'));
+        perfilTabContents.forEach(c => c.classList.remove('active'));
+        
+        // Agregar active al botón clickeado y su contenido correspondiente
+        this.classList.add('active');
+        document.getElementById(targetTab).classList.add('active');
+    });
+});
+
+/* ============================================
+   BUSCADOR LANDING PAGE
+   ============================================ */
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.querySelector('.search-btn');
+    const searchInput = document.querySelector('.search-input');
+    const searchSelects = document.querySelectorAll('.search-select');
+    
+    if (searchBtn) {
+        searchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const query = searchInput?.value || '';
+            const ubicacion = searchSelects[0]?.value || '';
+            const categoria = searchSelects[1]?.value || '';
+            
+            // Construir mensaje de búsqueda
+            let searchTerms = [];
+            if (query) searchTerms.push(`"${query}"`);
+            if (ubicacion) searchTerms.push(`en ${ubicacion}`);
+            if (categoria) searchTerms.push(`categoría: ${categoria}`);
+            
+            if (searchTerms.length > 0) {
+                // Redirigir a la página de descubrir con parámetros de búsqueda
+                const searchParams = new URLSearchParams();
+                if (query) searchParams.set('q', query);
+                if (ubicacion) searchParams.set('ubicacion', ubicacion);
+                if (categoria) searchParams.set('categoria', categoria);
+                
+                window.location.href = 'descubre.html?' + searchParams.toString();
+            } else {
+                alert('Por favor ingresa al menos un criterio de búsqueda');
+            }
+        });
+    }
+});
+
+/* ============================================
+   FORMULARIOS DE SERVICIOS TURÍSTICOS
+   ============================================ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Formulario de búsqueda de hoteles
+    const hotelesForm = document.querySelector('.servicios-form');
+    if (hotelesForm) {
+        hotelesForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const zona = this.querySelector('#zona')?.value;
+            const tipo = this.querySelector('#tipo')?.value;
+            
+            if (!zona && !tipo) {
+                alert('Por favor selecciona al menos una opción para buscar');
+                return;
+            }
+            
+            let mensaje = 'Buscando hoteles';
+            if (zona) mensaje += ` en zona ${zona}`;
+            if (tipo) mensaje += ` de tipo ${tipo}`;
+            
+            alert(mensaje + '.\n\nPróximamente mostraremos los resultados disponibles.');
+        });
+    }
+    
+    // Formulario de asesoría turística
+    const asesoriaForm = document.querySelector('.servicios-form-asesoria');
+    if (asesoriaForm) {
+        asesoriaForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const tipoServicio = this.querySelector('#tipo-servicio')?.value;
+            const fecha = this.querySelector('#fecha')?.value;
+            const personas = this.querySelector('#personas')?.value;
+            const mensaje = this.querySelector('#mensaje')?.value;
+            
+            if (!tipoServicio) {
+                alert('Por favor selecciona un tipo de servicio');
+                return;
+            }
+            
+            // Simular envío
+            const submitBtn = this.querySelector('.btn-enviar');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'ENVIANDO...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('¡Solicitud enviada con éxito!\n\nNos pondremos en contacto contigo pronto para brindarte asesoría personalizada.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+    }
+});
+
+/* ============================================
+   ENLACES DE FOOTER (TÉRMINOS Y POLÍTICAS)
+   ============================================ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Manejar enlaces de términos y políticas que no tienen página dedicada
+    const footerLinks = document.querySelectorAll('a[href="#terminos"], a[href="#politicas"]');
+    
+    footerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const linkType = this.getAttribute('href') === '#terminos' 
+                ? 'Términos y Condiciones' 
+                : 'Políticas de Privacidad';
+            
+            alert(`${linkType}\n\nEsta sección estará disponible próximamente.\n\nPara consultas, contáctenos en: info@puertacaribe.com`);
+        });
+    });
+});

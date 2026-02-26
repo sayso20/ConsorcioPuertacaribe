@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Puerta Caribe - Inicia sesión o regístrate para acceder a tu perfil.">
+  <title>Mi Perfil - Puerta Caribe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo-container">
+      <a href="landing.html">
+        <div class="logo-icon"><img src="assets/logos/logosimple.png" alt="Puerta Caribe Logo" style="height: 100%; width: auto;"></div>
+      </a>
+    </div>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="descubre.html">Descubre Barranquilla</a></li>
+        <li><a href="agenda.html">Agenda Cultural</a></li>
+        <li><a href="servicios.html">Servicios Turísticos</a></li>
+        <li><a href="sostenible.html">Turismo Sostenible</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+
+    <div class="navbar-actions">
+      <a href="carrito.html" class="btn-cart">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+      </a>
+      <a href="perfil.html" class="btn-login">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <!-- HERO PERFIL -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>MI PERFIL</h1>
+      <div class="breadcrumb">PUERTACARIBE > MI PERFIL</div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PERFIL -->
+  <section class="perfil-content">
+    <div class="perfil-container">
+      
+      <!-- Pestañas -->
+      <div class="perfil-tabs">
+        <button class="perfil-tab-btn active" data-tab="login">INICIAR SESIÓN</button>
+        <button class="perfil-tab-btn" data-tab="register">REGISTRAR</button>
+      </div>
+
+      <!-- Contenido Iniciar Sesión -->
+      <div class="perfil-tab-content active" id="login">
+        <form class="perfil-form" id="loginForm">
+          <div class="perfil-form-group">
+            <input type="text" placeholder="USUARIO/CORREO ELECTRÓNICO" required>
+          </div>
+          <div class="perfil-form-group password-group">
+            <input type="password" placeholder="CONTRASEÑA" required>
+            <button type="button" class="toggle-password">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <a href="recuperar-contrasena.html" class="perfil-forgot-password">¿PERDISTE TU CONTRASEÑA?</a>
+          <button type="submit" class="perfil-btn-submit">INICIAR SESIÓN</button>
+          <div class="perfil-checkbox-group">
+            <label class="perfil-checkbox-label">
+              <input type="checkbox">
+              <span class="checkmark"></span>
+              RECUÉRDAME
+            </label>
+          </div>
+        </form>
+      </div>
+
+      <!-- Contenido Registrar -->
+      <div class="perfil-tab-content" id="register">
+        <form class="perfil-form" id="registerForm">
+          <div class="perfil-form-group">
+            <input type="text" placeholder="NOMBRE DE USUARIO" required>
+          </div>
+          <div class="perfil-form-group">
+            <input type="email" placeholder="DIRECCIÓN CORREO ELECTRÓNICO" required>
+          </div>
+          <div class="perfil-form-group password-group">
+            <input type="password" placeholder="CONTRASEÑA" required>
+            <button type="button" class="toggle-password">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div class="perfil-form-group">
+            <input type="text" placeholder="NOMBRE" required>
+          </div>
+          <div class="perfil-form-group">
+            <input type="text" placeholder="APELLIDO" required>
+          </div>
+          <div class="perfil-checkbox-group">
+            <label class="perfil-checkbox-label">
+              <input type="checkbox" required>
+              <span class="checkmark"></span>
+              ACEPTO LA POLÍTICA DE PRIVACIDAD
+            </label>
+          </div>
+          <div class="perfil-checkbox-group">
+            <label class="perfil-checkbox-label">
+              <input type="checkbox" required>
+              <span class="checkmark"></span>
+              ACEPTO LOS TÉRMINOS Y CONDICIONES
+            </label>
+          </div>
+          <button type="submit" class="perfil-btn-submit">REGISTRAR</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section footer-disclaimer">
+        <p>CADA EXPERIENCIA, ACTIVIDAD O SERVICIO PUBLICADO EN LA PLATAFORMA ES OPERADO DIRECTAMENTE POR TERCEROS, PREVIAMENTE VERIFICADOS, Y CUENTA CON EL RESPALDO INSTITUCIONAL Y LA VALIDACIÓN DE CALIDAD DE LAS ENTIDADES TURÍSTICAS Y CULTURALES DE BARRANQUILLA Y EL DEPARTAMENTO DEL ATLÁNTICO.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>LINKS DE INTERÉS</h3>
+        <div class="footer-links">
+          <a href="#terminos">TÉRMINOS Y CONDICIONES</a>
+          <a href="#politicas">POLÍTICAS DE PRIVACIDAD</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>AVALADO POR:</h3>
+        <div class="footer-logos">
+          <!-- Logos de entidades -->
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Puerta Caribe - Todos los derechos reservados | Barranquilla, Colombia</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
