@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel de Control - Puerta Caribe.">
+  <title>Panel de Control - Puerta Caribe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-dashboard-container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+      background: #f5f5f5;
+    }
+
+    .admin-sidebar {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3b66 100%);
+      color: white;
+      padding: 30px 20px;
+      position: relative;
+    }
+
+    .admin-sidebar-logo {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .admin-sidebar-user {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      font-size: 12px;
+    }
+
+    .admin-sidebar-user-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .admin-sidebar-user-role {
+      font-size: 11px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-sidebar-menu {
+      list-style: none;
+      padding: 0;
+    }
+
+    .admin-sidebar-menu li {
+      margin-bottom: 10px;
+    }
+
+    .admin-sidebar-menu a {
+      display: block;
+      padding: 12px 16px;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .admin-sidebar-menu a:hover,
+    .admin-sidebar-menu a.active {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .admin-sidebar-logout {
+      position: absolute;
+      bottom: 30px;
+      left: 20px;
+      right: 20px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      width: calc(100% - 40px);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-sidebar-logout:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .admin-main {
+      padding: 40px;
+    }
+
+    .admin-header {
+      margin-bottom: 40px;
+    }
+
+    .admin-header h1 {
+      font-size: 36px;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .admin-header p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .admin-card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .admin-card-icon {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .admin-card h3 {
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .admin-card p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .admin-restricted {
+      display: none !important;
+    }
+
+    .admin-card.admin-restricted.admin-show {
+      display: flex !important;
+    }
+
+    @media (max-width: 768px) {
+      .admin-dashboard-container {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-sidebar {
+        display: none;
+      }
+
+      .admin-main {
+        padding: 20px;
+      }
+
+      .admin-header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-dashboard-container">
+    <!-- SIDEBAR -->
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-logo">🔰 PUERTA<br>CARIBE</div>
+
+      <div class="admin-sidebar-user">
+        <div class="admin-sidebar-user-name" id="adminUserName">Usuario</div>
+        <div class="admin-sidebar-user-role" id="adminUserRole">Rol</div>
+      </div>
+
+      <ul class="admin-sidebar-menu">
+        <li><a href="#dashboard" class="admin-menu-link active" data-section="dashboard">📊 Dashboard</a></li>
+        <li><a href="#usuarios" class="admin-menu-link" data-section="usuarios" data-role="Admin,Dueño">👥 Usuarios</a></li>
+        <li><a href="#hoteles" class="admin-menu-link" data-section="hoteles" data-role="Admin,Dueño">🏨 Hoteles</a></li>
+        <li><a href="#agencias" class="admin-menu-link" data-section="agencias" data-role="Admin,Dueño">✈️ Agencias</a></li>
+        <li><a href="#eventos" class="admin-menu-link" data-section="eventos" data-role="Admin,Empleado,Dueño">📅 Eventos</a></li>
+        <li><a href="#reservas" class="admin-menu-link" data-section="reservas" data-role="Admin,Empleado,Dueño">📋 Reservas</a></li>
+        <li><a href="#contactos" class="admin-menu-link" data-section="contactos" data-role="Admin,Empleado,Dueño">💬 Contactos</a></li>
+        <li><a href="#reportes" class="admin-menu-link" data-section="reportes" data-role="Admin,Dueño">📈 Reportes</a></li>
+      </ul>
+
+      <button class="admin-sidebar-logout" id="adminLogoutBtn">CERRAR SESIÓN</button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="admin-main">
+      <div class="admin-header">
+        <h1>Panel de Control</h1>
+        <p id="adminWelcomeMsg">Bienvenido al panel de control de Puerta Caribe</p>
+      </div>
+
+      <div id="dashboardContent" class="admin-content">
+        <!-- Dashboard - Visible para todos -->
+        <section id="dashboard-section" class="admin-section">
+          <div class="admin-grid">
+            <div class="admin-card">
+              <div class="admin-card-icon">👥</div>
+              <h3>Usuarios Registrados</h3>
+              <p id="statUsuarios">Cargando...</p>
+            </div>
+            <div class="admin-card">
+              <div class="admin-card-icon">🏨</div>
+              <h3>Hoteles Activos</h3>
+              <p id="statHoteles">Cargando...</p>
+            </div>
+            <div class="admin-card">
+              <div class="admin-card-icon">📅</div>
+              <h3>Eventos Próximos</h3>
+              <p id="statEventos">Cargando...</p>
+            </div>
+            <div class="admin-card">
+              <div class="admin-card-icon">💬</div>
+              <h3>Contactos Nuevos</h3>
+              <p id="statContactos">Cargando...</p>
+            </div>
+
+            <!-- Restricted to Admin/Dueño -->
+            <div class="admin-card admin-restricted" data-role="Admin,Dueño">
+              <div class="admin-card-icon">📊</div>
+              <h3>Ingresos Totales</h3>
+              <p id="statIngresos">Cargando...</p>
+            </div>
+
+            <!-- Restricted to Dueño -->
+            <div class="admin-card admin-restricted" data-role="Dueño">
+              <div class="admin-card-icon">🎯</div>
+              <h3>Análisis Estratégico</h3>
+              <p>Reportes de desempeño y métricas clave</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Usuarios - Solo Admin/Dueño -->
+        <section id="usuarios-section" class="admin-section admin-restricted" data-role="Admin,Dueño">
+          <h2>Gestión de Usuarios</h2>
+          <div id="usuariosGrid" class="admin-grid"></div>
+        </section>
+
+        <!-- Hoteles - Solo Admin/Dueño -->
+        <section id="hoteles-section" class="admin-section admin-restricted" data-role="Admin,Dueño">
+          <h2>Gestión de Hoteles</h2>
+          <div id="hotelesGrid" class="admin-grid"></div>
+        </section>
+
+        <!-- Agencias - Solo Admin/Dueño -->
+        <section id="agencias-section" class="admin-section admin-restricted" data-role="Admin,Dueño">
+          <h2>Gestión de Agencias</h2>
+          <div id="agenciasGrid" class="admin-grid"></div>
+        </section>
+
+        <!-- Eventos - Admin/Empleado/Dueño -->
+        <section id="eventos-section" class="admin-section admin-restricted" data-role="Admin,Empleado,Dueño">
+          <h2>Gestión de Eventos</h2>
+          <div id="eventosGrid" class="admin-grid"></div>
+        </section>
+
+        <!-- Reservas - Admin/Empleado/Dueño -->
+        <section id="reservas-section" class="admin-section admin-restricted" data-role="Admin,Empleado,Dueño">
+          <h2>Reservas y Solicitudes</h2>
+          <div id="reservasGrid" class="admin-grid"></div>
+        </section>
+
+        <!-- Contactos - Admin/Empleado/Dueño -->
+        <section id="contactos-section" class="admin-section admin-restricted" data-role="Admin,Empleado,Dueño">
+          <h2>Solicitudes de Contacto</h2>
+          <div id="contactosGrid" class="admin-grid"></div>
+        </section>
+
+        <!-- Reportes - Solo Admin/Dueño -->
+        <section id="reportes-section" class="admin-section admin-restricted" data-role="Admin,Dueño">
+          <h2>Reportes y Análisis</h2>
+          <div class="admin-grid">
+            <div class="admin-card">
+              <div class="admin-card-icon">📈</div>
+              <h3>Desempeño Mensual</h3>
+              <p>Estadísticas de actividad y rendimiento del mes</p>
+            </div>
+            <div class="admin-card">
+              <div class="admin-card-icon">📊</div>
+              <h3>Análisis de Usuarios</h3>
+              <p>Segmentación y comportamiento de usuarios</p>
+            </div>
+            <div class="admin-card">
+              <div class="admin-card-icon">💰</div>
+              <h3>Reportes Financieros</h3>
+              <p>Ingresos, gastos y rentabilidad</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Verificar autenticación
+      const session = AuthService.getSession();
+      if (!session || session.role === 'Usuario') {
+        window.location.href = 'admin-login.html';
+        return;
+      }
+
+      // Cargar datos del usuario
+      document.getElementById('adminUserName').textContent = session.nombre + ' ' + session.apellido;
+      document.getElementById('adminUserRole').textContent = '【' + session.role.toUpperCase() + '】';
+      document.getElementById('adminWelcomeMsg').textContent = '¡Bienvenido, ' + session.nombre + '! Aquí puedes gestionar la plataforma.';
+
+      // Control de acceso por rol
+      function showElementsForRole(role) {
+        // Mostrar/ocultar menú items
+        document.querySelectorAll('.admin-menu-link').forEach(link => {
+          const allowedRoles = link.dataset.role;
+          if (allowedRoles && !allowedRoles.split(',').includes(role)) {
+            link.parentElement.style.display = 'none';
+          }
+        });
+
+        // Mostrar/ocultar secciones
+        document.querySelectorAll('.admin-restricted').forEach(el => {
+          const allowedRoles = el.dataset.role;
+          if (allowedRoles && allowedRoles.split(',').includes(role)) {
+            el.classList.add('admin-show');
+          }
+        });
+
+        // Mostrar/ocultar cards en dashboard
+        document.querySelectorAll('.admin-card[data-role]').forEach(card => {
+          const allowedRoles = card.dataset.role;
+          if (allowedRoles && allowedRoles.split(',').includes(role)) {
+            card.classList.add('admin-show');
+          }
+        });
+      }
+
+      showElementsForRole(session.role);
+
+      // Cargar estadísticas
+      function loadStats() {
+        const users = LocalDB.getUsers();
+        const hotels = LocalDB.getHotels();
+        const events = LocalDB.getEvents();
+        const contacts = LocalDB.getContactRequests();
+
+        document.getElementById('statUsuarios').textContent = users.length + ' usuario' + (users.length !== 1 ? 's' : '');
+        document.getElementById('statHoteles').textContent = hotels.length + ' hotel' + (hotels.length !== 1 ? 'es' : '');
+        document.getElementById('statEventos').textContent = events.length + ' evento' + (events.length !== 1 ? 's' : '');
+        document.getElementById('statContactos').textContent = contacts.length + ' solicitud' + (contacts.length !== 1 ? 'es' : '');
+        document.getElementById('statIngresos').textContent = 'Consultar reportes financieros';
+      }
+
+      loadStats();
+
+      // Cerrar sesión
+      document.getElementById('adminLogoutBtn').addEventListener('click', function() {
+        if (confirm('¿Deseas cerrar sesión?')) {
+          AuthService.logout();
+          window.location.href = 'index.html';
+        }
+      });
+
+      // Navegación
+      document.querySelectorAll('.admin-menu-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const section = this.dataset.section;
+          document.querySelectorAll('.admin-menu-link').forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          // Aquí puedes implementar cambio de contenido
+        });
+      });
+    });
+  </script>
+</body>
+</html>

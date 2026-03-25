@@ -121,43 +121,5 @@
   </footer>
 
   <script src="js/script.js"></script>
-  <script>
-    // Verificar autenticación y mostrar datos del usuario
-    document.addEventListener('DOMContentLoaded', function() {
-      const session = AuthService.getSession();
-      
-      if (!session) {
-        // Si no hay sesión, redirigir a login
-        window.location.href = 'perfil.html';
-        return;
-      }
-
-      // Mostrar nombre del usuario
-      const welcomeName = document.getElementById('welcomeUserName');
-      if (welcomeName) {
-        welcomeName.textContent = session.nombre || session.username;
-      }
-
-      // Configurar botón de logout
-      const logoutBtn = document.getElementById('logoutBtn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          AuthService.logout();
-          window.location.href = 'index.html';
-        });
-      }
-
-      // Manejar tarjetas de cuenta (en desarrollo)
-      const cuentaCards = document.querySelectorAll('.mi-cuenta-card');
-      cuentaCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-          e.preventDefault();
-          const cardTitle = this.querySelector('h3').textContent;
-          alert(`${cardTitle}\n\nEsta funcionalidad estará disponible próximamente.`);
-        });
-      });
-    });
-  </script>
 </body>
 </html>

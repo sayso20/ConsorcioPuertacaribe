@@ -55,13 +55,42 @@
     <div class="recuperar-container">
       <form class="recuperar-form" id="recuperarForm">
         <div class="perfil-form-group">
-          <input type="email" placeholder="DIRECCIÓN CORREO ELECTRÓNICO" required>
+          <input type="email" id="recuperarEmail" placeholder="DIRECCIÓN CORREO ELECTRÓNICO" required>
         </div>
-        <button type="submit" class="perfil-btn-submit">RESTABLECER CONTRASEÑA</button>
+        <button type="submit" class="perfil-btn-submit">SOLICITAR CODIGO</button>
       </form>
+
+      <p class="recuperar-note">Por seguridad, siempre mostraremos el mismo mensaje. En modo local, el codigo queda en el buzon de pruebas interno.</p>
+
+      <form class="recuperar-form" id="resetPasswordForm" style="display: none; margin-top: 20px;">
+        <div class="perfil-form-group">
+          <input type="text" id="codigoRecuperacion" placeholder="CODIGO DE RECUPERACION" maxlength="8" required>
+        </div>
+        <div class="perfil-form-group password-group">
+          <input type="password" id="nuevaContrasena" placeholder="NUEVA CONTRASEÑA" required>
+          <button type="button" class="toggle-password" aria-label="Mostrar u ocultar contraseña">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+        <div class="perfil-form-group password-group">
+          <input type="password" id="confirmarContrasena" placeholder="CONFIRMAR CONTRASEÑA" required>
+          <button type="button" class="toggle-password" aria-label="Mostrar u ocultar contraseña">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+        <button type="submit" class="perfil-btn-submit">GUARDAR NUEVA CONTRASEÑA</button>
+      </form>
+
+      <button type="button" class="btn-volver-login" id="showLocalRecoveryCode" style="display: none; margin-top: 16px;">VER CODIGO DE PRUEBA LOCAL</button>
       
       <div class="recuperar-mensaje" id="recuperarMensaje" style="display: none;">
-        <p>Se ha enviado un enlace de recuperación a tu correo electrónico.</p>
+        <p id="recuperarMensajeTexto">Proceso completado.</p>
         <a href="perfil.html" class="btn-volver-login">VOLVER A INICIAR SESIÓN</a>
       </div>
     </div>
@@ -96,23 +125,5 @@
   </footer>
 
   <script src="js/script.js"></script>
-  <script>
-    document.getElementById('recuperarForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = this.querySelector('input[type="email"]').value;
-      
-      // Simular envío
-      const submitBtn = this.querySelector('.perfil-btn-submit');
-      submitBtn.textContent = 'ENVIANDO...';
-      submitBtn.disabled = true;
-
-      setTimeout(() => {
-        // Ocultar formulario y mostrar mensaje
-        this.style.display = 'none';
-        document.getElementById('recuperarMensaje').style.display = 'block';
-        console.log('Recuperación enviada a:', email);
-      }, 1500);
-    });
-  </script>
 </body>
 </html>

@@ -70,34 +70,59 @@
           <span class="current-month-year">FEBRERO 2026</span>
           <button class="btn-nav-month" id="btn-next-month">&gt;</button>
         </div>
-        <button class="btn-today">HOY</button>
+        <div class="calendar-header-actions">
+          <div class="calendar-mode-toggle">
+            <button class="calendar-mode-btn active" type="button" id="modeMonthBtn">Mes</button>
+            <button class="calendar-mode-btn" type="button" id="modeYearBtn">Ano</button>
+          </div>
+          <button class="btn-today">HOY</button>
+        </div>
       </div>
 
       <!-- CALENDAR GRID -->
       <div class="calendar-grid-wrapper">
-        <div class="calendar-weekdays">
-          <div class="weekday">LUN</div>
-          <div class="weekday">MAR</div>
-          <div class="weekday">MIÉ</div>
-          <div class="weekday">JUE</div>
-          <div class="weekday">VIE</div>
-          <div class="weekday">SÁB</div>
-          <div class="weekday">DOM</div>
-        </div>
-        <div class="calendar-grid" id="calendar-grid">
-          <!-- Se llena dinámicamente con JavaScript -->
-        </div>
-      </div>
+        <div class="calendar-main">
+          <div class="calendar-month-view" id="calendarMonthView">
+            <div class="calendar-weekdays">
+              <div class="weekday">LUN</div>
+              <div class="weekday">MAR</div>
+              <div class="weekday">MIÉ</div>
+              <div class="weekday">JUE</div>
+              <div class="weekday">VIE</div>
+              <div class="weekday">SÁB</div>
+              <div class="weekday">DOM</div>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+              <!-- Se llena dinámicamente con JavaScript -->
+            </div>
+          </div>
 
-      <!-- FILTERS -->
-      <div class="filters-section">
-        <input type="text" class="filter-search" placeholder="Buscar eventos...">
-        <div class="filter-buttons">
-          <button class="filter-badge">Todos</button>
-          <button class="filter-badge">Música</button>
-          <button class="filter-badge">Cultura</button>
-          <button class="filter-badge">Naturaleza</button>
-          <button class="filter-badge">Gastronomía</button>
+          <div class="calendar-year-view" id="calendarYearView" hidden>
+            <div class="year-grid" id="yearGrid"></div>
+          </div>
+        </div>
+
+        <div class="calendar-integrated-panel">
+          <div class="filters-section">
+            <input type="text" class="filter-search" placeholder="Buscar eventos...">
+            <input type="date" class="filter-date" id="eventDateFilter">
+            <input type="text" class="filter-search" id="eventLocationFilter" placeholder="Filtrar por ubicacion...">
+            <div class="filter-buttons">
+              <button class="filter-badge">Todos</button>
+              <button class="filter-badge">Música</button>
+              <button class="filter-badge">Cultura</button>
+              <button class="filter-badge">Naturaleza</button>
+              <button class="filter-badge">Gastronomía</button>
+            </div>
+          </div>
+
+          <div class="agenda-list-header">
+            <h3 id="selectedDateLabel">Eventos del mes</h3>
+            <span id="eventCountBadge" class="event-count-badge">0 resultados</span>
+          </div>
+
+          <div class="agenda-event-list" id="eventosList"></div>
+          <p class="dynamic-empty" id="eventosEmpty" hidden>No hay eventos para los filtros seleccionados.</p>
         </div>
       </div>
     </div>

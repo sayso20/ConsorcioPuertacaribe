@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel de Acceso - Puerta Caribe. Acceso exclusivo para funcionarios.">
+  <title>Panel de Acceso - Puerta Caribe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3b66 100%);
+      padding: 20px;
+    }
+
+    .admin-login-box {
+      background: white;
+      border-radius: 12px;
+      padding: 60px 40px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .admin-login-box h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-login-box .admin-subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 40px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .admin-form-group {
+      margin-bottom: 25px;
+    }
+
+    .admin-form-group label {
+      display: block;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: 'Open Sans', sans-serif;
+      transition: all 0.3s ease;
+      background: #f9f9f9;
+    }
+
+    .admin-form-group input:focus {
+      outline: none;
+      border-color: var(--navy);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(10, 38, 71, 0.1);
+    }
+
+    .admin-login-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3b66 100%);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .admin-login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(10, 38, 71, 0.3);
+    }
+
+    .admin-login-btn:active {
+      transform: translateY(0);
+    }
+
+    .admin-back-link {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .admin-back-link a {
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .admin-back-link a:hover {
+      color: #0d3b66;
+      text-decoration: underline;
+    }
+
+    .admin-info-box {
+      background: rgba(10, 38, 71, 0.05);
+      border-left: 4px solid var(--navy);
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 30px;
+      font-size: 12px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .admin-info-box strong {
+      color: var(--navy);
+      display: block;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-login-container">
+    <div class="admin-login-box">
+      <h1>ACCESO FUNCIONARIOS</h1>
+      <p class="admin-subtitle">Panel exclusivo</p>
+      
+      <form id="adminLoginForm">
+        <div class="admin-form-group">
+          <label for="adminUser">Usuario o Correo</label>
+          <input type="text" id="adminUser" placeholder="usuario@puertacaribe.com" required>
+        </div>
+        
+        <div class="admin-form-group">
+          <label for="adminPassword">Contraseña</label>
+          <input type="password" id="adminPassword" placeholder="Tu contraseña" required>
+        </div>
+
+        <button type="submit" class="admin-login-btn">ACCEDER</button>
+      </form>
+
+      <div class="admin-info-box">
+        <strong>⚠️ Acceso Restringido</strong>
+        Este panel es exclusivo para empleados, administradores y propietarios de Puerta Caribe. Acceso no autorizado está prohibido.
+      </div>
+
+      <div class="admin-back-link">
+        <a href="index.html">← Volver a la página principal</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('adminLoginForm');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const usernameOrEmail = document.getElementById('adminUser').value.trim();
+          const password = document.getElementById('adminPassword').value;
+
+          if (!usernameOrEmail || !password) {
+            showMessage('Completa usuario/correo y contraseña.', 'error');
+            return;
+          }
+
+          const result = AuthService.login({ usernameOrEmail, password });
+          
+          if (result.success) {
+            const session = AuthService.getSession();
+            // Verificar que sea funcionario (no Usuario regular)
+            if (session.role === 'Usuario') {
+              AuthService.logout();
+              showMessage('Este acceso es solo para funcionarios.', 'error');
+              return;
+            }
+            showMessage('¡Bienvenido, ' + session.nombre + '!', 'success');
+            setTimeout(() => {
+              window.location.href = 'admin-dashboard.html';
+            }, 1000);
+          } else {
+            showMessage(result.message || 'Error al iniciar sesión', 'error');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
