@@ -234,10 +234,14 @@
         },
         getAttractions() { return readStore(STORAGE_KEYS.attractions, []); },
         getHotels() { return readStore(STORAGE_KEYS.hotels, []); },
+        saveHotels(hotels) { writeStore(STORAGE_KEYS.hotels, hotels); },
         getAgencies() { return readStore(STORAGE_KEYS.agencies, []); },
+        saveAgencies(agencies) { writeStore(STORAGE_KEYS.agencies, agencies); },
         getEvents() { return readStore(STORAGE_KEYS.events, []); },
+        saveEvents(events) { writeStore(STORAGE_KEYS.events, events); },
         getSupportChannels() { return readStore(STORAGE_KEYS.supportChannels, []); },
         getContactRequests() { return readStore(STORAGE_KEYS.contactRequests, []); },
+        saveContactRequests(requests) { writeStore(STORAGE_KEYS.contactRequests, requests); },
         getRecoveryTokens() { return readStore(STORAGE_KEYS.recoveryTokens, []); },
         saveRecoveryTokens(tokens) { writeStore(STORAGE_KEYS.recoveryTokens, tokens); },
         getRecoveryAttempts() { return readStore(STORAGE_KEYS.recoveryAttempts, []); },
@@ -295,6 +299,9 @@
         window.clearTimeout(toast._timer);
         toast._timer = window.setTimeout(() => { toast.hidden = true; }, 2800);
     }
+
+    // Permite reutilizar el toast desde scripts inline en paginas externas al modulo.
+    window.showMessage = showMessage;
 
     function computeHash(text) {
         let hash = 0;

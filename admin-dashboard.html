@@ -25,11 +25,14 @@
     }
 
     .admin-sidebar-logo {
-      font-size: 18px;
-      font-weight: 700;
       margin-bottom: 40px;
       text-align: center;
-      letter-spacing: 1px;
+    }
+
+    .admin-sidebar-logo img {
+      max-width: 165px;
+      width: 100%;
+      height: auto;
     }
 
     .admin-sidebar-user {
@@ -62,7 +65,9 @@
     }
 
     .admin-sidebar-menu a {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       padding: 12px 16px;
       color: rgba(255, 255, 255, 0.85);
       text-decoration: none;
@@ -146,8 +151,31 @@
     }
 
     .admin-card-icon {
-      font-size: 32px;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #edf2f7;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #0d3b66;
       margin-bottom: 15px;
+    }
+
+    .admin-icon {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: 0 0 auto;
+    }
+
+    .admin-card-icon .admin-icon {
+      width: 22px;
+      height: 22px;
     }
 
     .admin-card h3 {
@@ -163,12 +191,227 @@
       line-height: 1.6;
     }
 
+    .admin-section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .admin-section-head h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 24px;
+    }
+
+    .admin-section-tools {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .admin-btn {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+    }
+
+    .admin-btn-primary {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .admin-btn-secondary {
+      background: #eceff4;
+      color: #243447;
+    }
+
+    .admin-btn-danger {
+      background: #b42318;
+      color: #fff;
+    }
+
+    .admin-card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .admin-stars {
+      color: #f2b705;
+      letter-spacing: 1px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .admin-stars-muted {
+      color: #9aa4b2;
+      letter-spacing: 1px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .admin-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 12000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .admin-modal[hidden] {
+      display: none;
+    }
+
+    .admin-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 22, 38, 0.58);
+      backdrop-filter: blur(2px);
+    }
+
+    .admin-modal-panel {
+      position: relative;
+      width: min(720px, 96vw);
+      max-height: 92vh;
+      overflow: auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 28px 70px rgba(11, 32, 58, 0.35);
+      padding: 20px;
+    }
+
+    .admin-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .admin-modal-head h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 22px;
+    }
+
+    .admin-modal-close {
+      border: 0;
+      border-radius: 999px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      background: #edf2f7;
+      color: #1f2937;
+    }
+
+    .admin-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .admin-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .admin-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .admin-field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0b355d;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .admin-field input,
+    .admin-field select {
+      border: 1px solid #cfd7e3;
+      border-radius: 8px;
+      min-height: 40px;
+      padding: 8px 10px;
+      font-size: 14px;
+      font-family: 'Open Sans', sans-serif;
+      background: #fff;
+    }
+
+    .admin-field input:focus,
+    .admin-field select:focus {
+      outline: 2px solid rgba(13, 59, 102, 0.24);
+      border-color: #0d3b66;
+    }
+
+    .admin-permission-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      border: 1px solid #d6deea;
+      border-radius: 10px;
+      padding: 10px;
+      background: #f8fafc;
+    }
+
+    .admin-permission-grid label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #243447;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .admin-modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid #e5eaf1;
+    }
+
+    .admin-section {
+      display: none;
+    }
+
+    .admin-section.admin-active {
+      display: block;
+    }
+
     .admin-restricted {
       display: none !important;
     }
 
     .admin-card.admin-restricted.admin-show {
       display: flex !important;
+    }
+
+    .admin-section.admin-restricted.admin-show {
+      display: none;
+    }
+
+    .admin-section.admin-restricted.admin-show.admin-active {
+      display: block !important;
     }
 
     @media (max-width: 768px) {
@@ -195,7 +438,9 @@
   <div class="admin-dashboard-container">
     <!-- SIDEBAR -->
     <div class="admin-sidebar">
-      <div class="admin-sidebar-logo">🔰 PUERTA<br>CARIBE</div>
+      <div class="admin-sidebar-logo">
+        <img src="assets/logos/logomain.png" alt="Consorcio Puerta Caribe">
+      </div>
 
       <div class="admin-sidebar-user">
         <div class="admin-sidebar-user-name" id="adminUserName">Usuario</div>
@@ -203,14 +448,14 @@
       </div>
 
       <ul class="admin-sidebar-menu">
-        <li><a href="#dashboard" class="admin-menu-link active" data-section="dashboard">📊 Dashboard</a></li>
-        <li><a href="#usuarios" class="admin-menu-link" data-section="usuarios" data-role="Admin,Dueño">👥 Usuarios</a></li>
-        <li><a href="#hoteles" class="admin-menu-link" data-section="hoteles" data-role="Admin,Dueño">🏨 Hoteles</a></li>
-        <li><a href="#agencias" class="admin-menu-link" data-section="agencias" data-role="Admin,Dueño">✈️ Agencias</a></li>
-        <li><a href="#eventos" class="admin-menu-link" data-section="eventos" data-role="Admin,Empleado,Dueño">📅 Eventos</a></li>
-        <li><a href="#reservas" class="admin-menu-link" data-section="reservas" data-role="Admin,Empleado,Dueño">📋 Reservas</a></li>
-        <li><a href="#contactos" class="admin-menu-link" data-section="contactos" data-role="Admin,Empleado,Dueño">💬 Contactos</a></li>
-        <li><a href="#reportes" class="admin-menu-link" data-section="reportes" data-role="Admin,Dueño">📈 Reportes</a></li>
+        <li><a href="#dashboard" class="admin-menu-link active" data-section="dashboard"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11"></path><path d="M10 20V4"></path><path d="M16 20v-6"></path><path d="M2 20h20"></path></svg>Dashboard</a></li>
+        <li><a href="#usuarios" class="admin-menu-link" data-section="usuarios" data-role="Admin,Dueño"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 19c0-3 3-5 6-5s6 2 6 5"></path><circle cx="17" cy="9" r="2"></circle><path d="M15 19c.4-1.9 2.1-3 4-3"></path></svg>Usuarios</a></li>
+        <li><a href="#hoteles" class="admin-menu-link" data-section="hoteles" data-role="Admin,Dueño"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"></path><path d="M5 21V8l7-4 7 4v13"></path><path d="M9 12h2"></path><path d="M13 12h2"></path><path d="M9 16h2"></path><path d="M13 16h2"></path></svg>Hoteles</a></li>
+        <li><a href="#agencias" class="admin-menu-link" data-section="agencias" data-role="Admin,Dueño"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 18-8-8 18-2-8-8-2Z"></path></svg>Agencias</a></li>
+        <li><a href="#eventos" class="admin-menu-link" data-section="eventos" data-role="Admin,Empleado,Dueño"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4"></path><path d="M16 3v4"></path><path d="M3 10h18"></path></svg>Eventos</a></li>
+        <li><a href="#reservas" class="admin-menu-link" data-section="reservas" data-role="Admin,Empleado,Dueño"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h10a2 2 0 0 1 2 2v14H8z"></path><path d="M8 8H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path><path d="M11 10h6"></path><path d="M11 14h6"></path></svg>Reservas</a></li>
+        <li><a href="#contactos" class="admin-menu-link" data-section="contactos" data-role="Admin,Empleado,Dueño"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H6l-3 3v-7.5A8.5 8.5 0 1 1 21 11.5Z"></path></svg>Contactos</a></li>
+        <li><a href="#reportes" class="admin-menu-link" data-section="reportes" data-role="Admin,Dueño"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"></path><path d="m7 15 4-4 3 3 5-6"></path></svg>Reportes</a></li>
       </ul>
 
       <button class="admin-sidebar-logout" id="adminLogoutBtn">CERRAR SESIÓN</button>
@@ -225,39 +470,39 @@
 
       <div id="dashboardContent" class="admin-content">
         <!-- Dashboard - Visible para todos -->
-        <section id="dashboard-section" class="admin-section">
+        <section id="dashboard-section" class="admin-section admin-active">
           <div class="admin-grid">
             <div class="admin-card">
-              <div class="admin-card-icon">👥</div>
+              <div class="admin-card-icon"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 19c0-3 3-5 6-5s6 2 6 5"></path><circle cx="17" cy="9" r="2"></circle><path d="M15 19c.4-1.9 2.1-3 4-3"></path></svg></div>
               <h3>Usuarios Registrados</h3>
               <p id="statUsuarios">Cargando...</p>
             </div>
             <div class="admin-card">
-              <div class="admin-card-icon">🏨</div>
+              <div class="admin-card-icon"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"></path><path d="M5 21V8l7-4 7 4v13"></path><path d="M9 12h2"></path><path d="M13 12h2"></path><path d="M9 16h2"></path><path d="M13 16h2"></path></svg></div>
               <h3>Hoteles Activos</h3>
               <p id="statHoteles">Cargando...</p>
             </div>
             <div class="admin-card">
-              <div class="admin-card-icon">📅</div>
+              <div class="admin-card-icon"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4"></path><path d="M16 3v4"></path><path d="M3 10h18"></path></svg></div>
               <h3>Eventos Próximos</h3>
               <p id="statEventos">Cargando...</p>
             </div>
             <div class="admin-card">
-              <div class="admin-card-icon">💬</div>
+              <div class="admin-card-icon"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H6l-3 3v-7.5A8.5 8.5 0 1 1 21 11.5Z"></path></svg></div>
               <h3>Contactos Nuevos</h3>
               <p id="statContactos">Cargando...</p>
             </div>
 
             <!-- Restricted to Admin/Dueño -->
             <div class="admin-card admin-restricted" data-role="Admin,Dueño">
-              <div class="admin-card-icon">📊</div>
+              <div class="admin-card-icon"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11"></path><path d="M10 20V4"></path><path d="M16 20v-6"></path><path d="M2 20h20"></path></svg></div>
               <h3>Ingresos Totales</h3>
               <p id="statIngresos">Cargando...</p>
             </div>
 
             <!-- Restricted to Dueño -->
             <div class="admin-card admin-restricted" data-role="Dueño">
-              <div class="admin-card-icon">🎯</div>
+              <div class="admin-card-icon"><svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="4"></circle><circle cx="12" cy="12" r="1"></circle></svg></div>
               <h3>Análisis Estratégico</h3>
               <p>Reportes de desempeño y métricas clave</p>
             </div>
@@ -266,110 +511,440 @@
 
         <!-- Usuarios - Solo Admin/Dueño -->
         <section id="usuarios-section" class="admin-section admin-restricted" data-role="Admin,Dueño">
-          <h2>Gestión de Usuarios</h2>
+          <div class="admin-section-head">
+            <h2>Gestion de Usuarios</h2>
+          </div>
+          <div id="usuariosTools" class="admin-section-tools"></div>
           <div id="usuariosGrid" class="admin-grid"></div>
         </section>
 
         <!-- Hoteles - Solo Admin/Dueño -->
         <section id="hoteles-section" class="admin-section admin-restricted" data-role="Admin,Dueño">
-          <h2>Gestión de Hoteles</h2>
+          <div class="admin-section-head">
+            <h2>Gestion de Hoteles</h2>
+          </div>
+          <div id="hotelesTools" class="admin-section-tools"></div>
           <div id="hotelesGrid" class="admin-grid"></div>
         </section>
 
         <!-- Agencias - Solo Admin/Dueño -->
         <section id="agencias-section" class="admin-section admin-restricted" data-role="Admin,Dueño">
-          <h2>Gestión de Agencias</h2>
+          <div class="admin-section-head">
+            <h2>Gestion de Agencias</h2>
+          </div>
+          <div id="agenciasTools" class="admin-section-tools"></div>
           <div id="agenciasGrid" class="admin-grid"></div>
         </section>
 
         <!-- Eventos - Admin/Empleado/Dueño -->
         <section id="eventos-section" class="admin-section admin-restricted" data-role="Admin,Empleado,Dueño">
-          <h2>Gestión de Eventos</h2>
+          <div class="admin-section-head">
+            <h2>Gestion de Eventos</h2>
+          </div>
+          <div id="eventosTools" class="admin-section-tools"></div>
           <div id="eventosGrid" class="admin-grid"></div>
         </section>
 
         <!-- Reservas - Admin/Empleado/Dueño -->
         <section id="reservas-section" class="admin-section admin-restricted" data-role="Admin,Empleado,Dueño">
-          <h2>Reservas y Solicitudes</h2>
+          <div class="admin-section-head">
+            <h2>Reservas y Solicitudes</h2>
+          </div>
+          <div id="reservasTools" class="admin-section-tools"></div>
           <div id="reservasGrid" class="admin-grid"></div>
         </section>
 
         <!-- Contactos - Admin/Empleado/Dueño -->
         <section id="contactos-section" class="admin-section admin-restricted" data-role="Admin,Empleado,Dueño">
-          <h2>Solicitudes de Contacto</h2>
+          <div class="admin-section-head">
+            <h2>Solicitudes de Contacto</h2>
+          </div>
+          <div id="contactosTools" class="admin-section-tools"></div>
           <div id="contactosGrid" class="admin-grid"></div>
         </section>
 
         <!-- Reportes - Solo Admin/Dueño -->
         <section id="reportes-section" class="admin-section admin-restricted" data-role="Admin,Dueño">
-          <h2>Reportes y Análisis</h2>
-          <div class="admin-grid">
-            <div class="admin-card">
-              <div class="admin-card-icon">📈</div>
-              <h3>Desempeño Mensual</h3>
-              <p>Estadísticas de actividad y rendimiento del mes</p>
-            </div>
-            <div class="admin-card">
-              <div class="admin-card-icon">📊</div>
-              <h3>Análisis de Usuarios</h3>
-              <p>Segmentación y comportamiento de usuarios</p>
-            </div>
-            <div class="admin-card">
-              <div class="admin-card-icon">💰</div>
-              <h3>Reportes Financieros</h3>
-              <p>Ingresos, gastos y rentabilidad</p>
-            </div>
+          <div class="admin-section-head">
+            <h2>Reportes y Analisis</h2>
           </div>
+          <div id="reportesTools" class="admin-section-tools"></div>
+          <div class="admin-grid" id="reportesGrid"></div>
         </section>
       </div>
+    </div>
+  </div>
+
+  <div id="adminModal" class="admin-modal" hidden>
+    <div class="admin-modal-backdrop" data-action="modal-close"></div>
+    <div class="admin-modal-panel" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+      <div class="admin-modal-head">
+        <h3 id="adminModalTitle">Formulario</h3>
+        <button type="button" class="admin-modal-close" data-action="modal-close" aria-label="Cerrar">×</button>
+      </div>
+      <form id="adminModalForm"></form>
     </div>
   </div>
 
   <script src="js/script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Verificar autenticación
       const session = AuthService.getSession();
       if (!session || session.role === 'Usuario') {
         window.location.href = 'admin-login.html';
         return;
       }
 
-      // Cargar datos del usuario
-      document.getElementById('adminUserName').textContent = session.nombre + ' ' + session.apellido;
-      document.getElementById('adminUserRole').textContent = '【' + session.role.toUpperCase() + '】';
-      document.getElementById('adminWelcomeMsg').textContent = '¡Bienvenido, ' + session.nombre + '! Aquí puedes gestionar la plataforma.';
+      const sectionKeys = ['dashboard', 'usuarios', 'hoteles', 'agencias', 'eventos', 'reservas', 'contactos', 'reportes'];
+      const menuLinks = Array.from(document.querySelectorAll('.admin-menu-link'));
+      const allowedRoles = ['Usuario', 'Empleado', 'Admin', 'Dueño'];
+      let activeSection = 'dashboard';
+      const modal = document.getElementById('adminModal');
+      const modalTitle = document.getElementById('adminModalTitle');
+      const modalForm = document.getElementById('adminModalForm');
+      const modalState = {
+        type: '',
+        mode: '',
+        recordId: null,
+      };
+      const PERMISSION_CATALOG = [
+        'usuarios.manage',
+        'hoteles.manage',
+        'agencias.manage',
+        'eventos.create',
+        'eventos.edit',
+        'eventos.delete',
+        'solicitudes.update',
+        'solicitudes.delete',
+        'reportes.view',
+      ];
 
-      // Control de acceso por rol
-      function showElementsForRole(role) {
-        // Mostrar/ocultar menú items
-        document.querySelectorAll('.admin-menu-link').forEach(link => {
-          const allowedRoles = link.dataset.role;
-          if (allowedRoles && !allowedRoles.split(',').includes(role)) {
-            link.parentElement.style.display = 'none';
-          }
-        });
+      const ROLE_CAPABILITIES = {
+        Usuario: {},
+        Empleado: {
+          'eventos.create': true,
+          'eventos.edit': true,
+          'eventos.delete': false,
+          'solicitudes.update': true,
+          'solicitudes.delete': false,
+        },
+        Admin: {
+          'usuarios.manage': true,
+          'hoteles.manage': true,
+          'agencias.manage': true,
+          'eventos.create': true,
+          'eventos.edit': true,
+          'eventos.delete': true,
+          'solicitudes.update': true,
+          'solicitudes.delete': true,
+          'reportes.view': true,
+        },
+        Dueño: {
+          'usuarios.manage': true,
+          'hoteles.manage': true,
+          'agencias.manage': true,
+          'eventos.create': true,
+          'eventos.edit': true,
+          'eventos.delete': true,
+          'solicitudes.update': true,
+          'solicitudes.delete': true,
+          'reportes.view': true,
+        },
+      };
 
-        // Mostrar/ocultar secciones
-        document.querySelectorAll('.admin-restricted').forEach(el => {
-          const allowedRoles = el.dataset.role;
-          if (allowedRoles && allowedRoles.split(',').includes(role)) {
-            el.classList.add('admin-show');
-          }
-        });
-
-        // Mostrar/ocultar cards en dashboard
-        document.querySelectorAll('.admin-card[data-role]').forEach(card => {
-          const allowedRoles = card.dataset.role;
-          if (allowedRoles && allowedRoles.split(',').includes(role)) {
-            card.classList.add('admin-show');
-          }
-        });
+      function getSessionUserRecord() {
+        const users = LocalDB.getUsers();
+        return users.find(function(u) { return Number(u.id) === Number(session.userId); }) || null;
       }
 
-      showElementsForRole(session.role);
+      function getEffectiveCapabilities() {
+        const base = Object.assign({}, ROLE_CAPABILITIES[session.role] || {});
+        const sessionUser = getSessionUserRecord();
+        const custom = (sessionUser && sessionUser.customPermissions && typeof sessionUser.customPermissions === 'object')
+          ? sessionUser.customPermissions
+          : {};
 
-      // Cargar estadísticas
+        Object.keys(custom).forEach(function(permission) {
+          if (!PERMISSION_CATALOG.includes(permission)) return;
+          base[permission] = !!custom[permission];
+        });
+
+        return base;
+      }
+
+      function can(permission) {
+        if (!permission) return true;
+        const grants = getEffectiveCapabilities();
+        return !!grants[permission];
+      }
+
+      function parsePermissionList(rawText) {
+        const raw = String(rawText || '').trim();
+        if (!raw) return {};
+        const tokens = raw.split(',').map(function(item) { return item.trim(); }).filter(Boolean);
+        const result = {};
+        tokens.forEach(function(permission) {
+          if (PERMISSION_CATALOG.includes(permission)) result[permission] = true;
+        });
+        return result;
+      }
+
+      function permissionsToText(customPermissions) {
+        const obj = (customPermissions && typeof customPermissions === 'object') ? customPermissions : {};
+        const grants = Object.keys(obj).filter(function(permission) {
+          return obj[permission] === true;
+        });
+        return grants.length ? grants.join(', ') : 'Sin permisos extra';
+      }
+
+      function normalizeToken(value) {
+        return String(value || '')
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+          .trim();
+      }
+
+      function escapeHtml(text) {
+        return String(text || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function nextId(rows) {
+        const max = rows.reduce(function(acc, row) {
+          const id = Number(row && row.id);
+          return Number.isFinite(id) && id > acc ? id : acc;
+        }, 0);
+        return Math.max(Date.now(), max + 1);
+      }
+
+      function typeToStars(tipo) {
+        const raw = String(tipo || '').toLowerCase();
+        if (raw === 'hostal') return 0;
+        const match = raw.match(/(\d)/);
+        if (!match) return 0;
+        return Math.max(1, Math.min(5, Number(match[1])));
+      }
+
+      function starsMarkup(tipo) {
+        const stars = typeToStars(tipo);
+        if (!stars) return '<span class="admin-stars-muted">Hostal</span>';
+        const full = '★'.repeat(stars);
+        const empty = '☆'.repeat(Math.max(0, 5 - stars));
+        return '<span class="admin-stars" aria-label="' + stars + ' estrellas">' + full + '</span>' +
+          '<span class="admin-stars-muted">' + empty + '</span>';
+      }
+
+      function starsToType(value) {
+        const raw = String(value || '').toLowerCase();
+        if (raw === 'hostal' || raw === 'hostel' || raw === '0') return 'hostal';
+        const n = Number(raw);
+        if (Number.isFinite(n) && n >= 1 && n <= 5) return String(n) + 'estrellas';
+        if (/^\destrellas$/.test(raw)) return raw;
+        return '4estrellas';
+      }
+
+      function iconSvg(name) {
+        const icons = {
+          users: '<svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 19c0-3 3-5 6-5s6 2 6 5"></path><circle cx="17" cy="9" r="2"></circle><path d="M15 19c.4-1.9 2.1-3 4-3"></path></svg>',
+          hotel: '<svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"></path><path d="M5 21V8l7-4 7 4v13"></path><path d="M9 12h2"></path><path d="M13 12h2"></path><path d="M9 16h2"></path><path d="M13 16h2"></path></svg>',
+          message: '<svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H6l-3 3v-7.5A8.5 8.5 0 1 1 21 11.5Z"></path></svg>',
+          chart: '<svg class="admin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11"></path><path d="M10 20V4"></path><path d="M16 20v-6"></path><path d="M2 20h20"></path></svg>',
+        };
+        return icons[name] || icons.chart;
+      }
+
+      function openModal(title, bodyHtml, submitLabel) {
+        modalTitle.textContent = title;
+        modalForm.innerHTML = bodyHtml +
+          '<div class="admin-modal-actions">' +
+          '<button type="button" class="admin-btn admin-btn-secondary" data-action="modal-close">Cancelar</button>' +
+          '<button type="submit" class="admin-btn admin-btn-primary">' + submitLabel + '</button>' +
+          '</div>';
+        modal.hidden = false;
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        modalForm.innerHTML = '';
+        modalState.type = '';
+        modalState.mode = '';
+        modalState.recordId = null;
+      }
+
+      function collectCheckedPermissions() {
+        const checks = modalForm.querySelectorAll('input[name="customPermissions"]:checked');
+        const custom = {};
+        checks.forEach(function(check) {
+          custom[check.value] = true;
+        });
+        return custom;
+      }
+
+      function renderPermissionChecks(currentPermissions) {
+        const current = (currentPermissions && typeof currentPermissions === 'object') ? currentPermissions : {};
+        return '<div class="admin-permission-grid">' + PERMISSION_CATALOG.map(function(permission) {
+          const checked = current[permission] ? ' checked' : '';
+          return '<label><input type="checkbox" name="customPermissions" value="' + permission + '"' + checked + '> ' + permission + '</label>';
+        }).join('') + '</div>';
+      }
+
+      function showUserForm(mode, presetRole, user) {
+        modalState.type = 'user';
+        modalState.mode = mode;
+        modalState.recordId = user ? user.id : null;
+
+        const record = user || {};
+        const roleValue = presetRole || record.role || 'Usuario';
+        const title = mode === 'edit' ? 'Editar Usuario' : 'Nuevo Usuario';
+        const submit = mode === 'edit' ? 'Guardar cambios' : 'Crear usuario';
+        const disabledIdentity = mode === 'edit' ? ' disabled' : '';
+
+        openModal(
+          title,
+          '<div class="admin-form-grid">' +
+          '<div class="admin-field"><label>Nombre</label><input name="nombre" value="' + escapeHtml(record.nombre || '') + '" required></div>' +
+          '<div class="admin-field"><label>Apellido</label><input name="apellido" value="' + escapeHtml(record.apellido || '') + '" required></div>' +
+          '<div class="admin-field"><label>Usuario</label><input name="username" value="' + escapeHtml(record.username || '') + '" required' + disabledIdentity + '></div>' +
+          '<div class="admin-field"><label>Correo</label><input type="email" name="email" value="' + escapeHtml(record.email || '') + '" required' + disabledIdentity + '></div>' +
+          '<div class="admin-field"><label>Contraseña</label><input name="password" value="' + escapeHtml(record.password || 'Temporal2026') + '" required></div>' +
+          '<div class="admin-field"><label>Rol</label>' +
+          '<select name="role" required>' +
+          allowedRoles.map(function(role) {
+            const selected = role === roleValue ? ' selected' : '';
+            return '<option value="' + role + '"' + selected + '>' + role + '</option>';
+          }).join('') +
+          '</select></div>' +
+          '<div class="admin-field admin-field-full"><label>Permisos extra</label>' + renderPermissionChecks(record.customPermissions) + '</div>' +
+          '</div>',
+          submit
+        );
+      }
+
+      function showHotelForm(mode, hotel) {
+        modalState.type = 'hotel';
+        modalState.mode = mode;
+        modalState.recordId = hotel ? hotel.id : null;
+
+        const record = hotel || {};
+        const starSelection = typeToStars(record.tipo || '4estrellas');
+        const title = mode === 'edit' ? 'Editar Hotel' : 'Nuevo Hotel';
+        const submit = mode === 'edit' ? 'Guardar cambios' : 'Crear hotel';
+
+        openModal(
+          title,
+          '<div class="admin-form-grid">' +
+          '<div class="admin-field"><label>Nombre del hotel</label><input name="nombre" value="' + escapeHtml(record.nombre || '') + '" required></div>' +
+          '<div class="admin-field"><label>Zona</label><select name="zona" required>' +
+          ['norte', 'centro', 'sur', 'playa'].map(function(zona) {
+            const selected = zona === (record.zona || 'norte') ? ' selected' : '';
+            return '<option value="' + zona + '"' + selected + '>' + zona.charAt(0).toUpperCase() + zona.slice(1) + '</option>';
+          }).join('') +
+          '</select></div>' +
+          '<div class="admin-field"><label>Categoria</label><select name="categoria" required>' +
+          '<option value="hostal"' + ((record.tipo === 'hostal') ? ' selected' : '') + '>Hostal</option>' +
+          '<option value="3"' + (starSelection === 3 ? ' selected' : '') + '>3 estrellas</option>' +
+          '<option value="4"' + (starSelection === 4 ? ' selected' : '') + '>4 estrellas</option>' +
+          '<option value="5"' + (starSelection === 5 ? ' selected' : '') + '>5 estrellas</option>' +
+          '</select></div>' +
+          '<div class="admin-field"><label>Puntuacion (1-5)</label><select name="puntuacion" required>' +
+          ['1', '2', '3', '4', '5'].map(function(v) {
+            const selected = String(record.puntuacion || '4') === v ? ' selected' : '';
+            return '<option value="' + v + '"' + selected + '>' + v + '</option>';
+          }).join('') +
+          '</select></div>' +
+          '<div class="admin-field"><label>Telefono</label><input name="telefono" value="' + escapeHtml(record.telefono || '') + '"></div>' +
+          '<div class="admin-field"><label>Correo</label><input type="email" name="email" value="' + escapeHtml(record.email || '') + '"></div>' +
+          '<div class="admin-field admin-field-full"><label>Direccion</label><input name="direccion" value="' + escapeHtml(record.direccion || '') + '"></div>' +
+          '<div class="admin-field"><label>Precio desde</label><input name="precioDesde" value="' + escapeHtml(record.precioDesde || '$250.000') + '"></div>' +
+          '<div class="admin-field"><label>Mensaje comercial</label><input name="destaque" value="' + escapeHtml(record.destaque || 'Alojamiento recomendado') + '"></div>' +
+          '<div class="admin-field admin-field-full"><label>Ruta imagen</label><input name="imagen" value="' + escapeHtml(record.imagen || 'assets/imgs/servicios_turisticos_img.jpg') + '"></div>' +
+          '</div>',
+          submit
+        );
+      }
+
+      function showAgencyForm(mode, agency) {
+        modalState.type = 'agency';
+        modalState.mode = mode;
+        modalState.recordId = agency ? agency.id : null;
+
+        const record = agency || {};
+        const title = mode === 'edit' ? 'Editar Agencia' : 'Nueva Agencia';
+        const submit = mode === 'edit' ? 'Guardar cambios' : 'Crear agencia';
+
+        openModal(
+          title,
+          '<div class="admin-form-grid">' +
+          '<div class="admin-field"><label>Nombre de agencia</label><input name="nombre" value="' + escapeHtml(record.nombre || '') + '" required></div>' +
+          '<div class="admin-field"><label>Especialidad</label><input name="especialidad" value="' + escapeHtml(record.especialidad || 'Asesoria de viaje') + '"></div>' +
+          '<div class="admin-field"><label>Telefono</label><input name="telefono" value="' + escapeHtml(record.telefono || '') + '"></div>' +
+          '<div class="admin-field"><label>Correo</label><input type="email" name="email" value="' + escapeHtml(record.email || '') + '"></div>' +
+          '<div class="admin-field admin-field-full"><label>Horario</label><input name="horario" value="' + escapeHtml(record.horario || '') + '"></div>' +
+          '</div>',
+          submit
+        );
+      }
+
+      function showEventForm(mode, eventItem) {
+        modalState.type = 'event';
+        modalState.mode = mode;
+        modalState.recordId = eventItem ? eventItem.id : null;
+
+        const record = eventItem || {};
+        const title = mode === 'edit' ? 'Editar Evento' : 'Nuevo Evento';
+        const submit = mode === 'edit' ? 'Guardar cambios' : 'Crear evento';
+
+        openModal(
+          title,
+          '<div class="admin-form-grid">' +
+          '<div class="admin-field"><label>Nombre</label><input name="nombre" value="' + escapeHtml(record.nombre || '') + '" required></div>' +
+          '<div class="admin-field"><label>Categoria</label><input name="categoria" value="' + escapeHtml(record.categoria || 'Cultura') + '" required></div>' +
+          '<div class="admin-field"><label>Fecha</label><input type="date" name="fecha" value="' + escapeHtml(record.fecha || '') + '" required></div>' +
+          '<div class="admin-field"><label>Hora</label><input type="time" name="hora" value="' + escapeHtml(record.hora || '18:00') + '"></div>' +
+          '<div class="admin-field"><label>Lugar</label><input name="lugar" value="' + escapeHtml(record.lugar || '') + '" required></div>' +
+          '<div class="admin-field"><label>Ubicacion</label><input name="ubicacion" value="' + escapeHtml(record.ubicacion || 'Barranquilla') + '"></div>' +
+          '<div class="admin-field admin-field-full"><label>Descripcion</label><input name="descripcion" value="' + escapeHtml(record.descripcion || 'Evento local') + '"></div>' +
+          '</div>',
+          submit
+        );
+      }
+
+      function roleAllowed(allowedRoles, role) {
+        if (!allowedRoles) return true;
+        return allowedRoles.split(',').map((r) => r.trim()).includes(role);
+      }
+
+      function showEmpty(containerId, message) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '<div class="admin-card"><h3>Sin datos</h3><p>' + message + '</p></div>';
+      }
+
+      function renderCards(containerId, rows, renderer) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (!Array.isArray(rows) || rows.length === 0) {
+          showEmpty(containerId, 'No hay registros disponibles por ahora.');
+          return;
+        }
+        container.innerHTML = rows.map(renderer).join('');
+      }
+
+      function bindSectionTools(containerId, buttons) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = buttons.filter(function(btn) {
+          return can(btn.cap);
+        }).map(function(btn) {
+          return '<button type="button" class="admin-btn ' + btn.className + '" data-action="' + btn.action + '">' + btn.label + '</button>';
+        }).join('');
+      }
+
       function loadStats() {
         const users = LocalDB.getUsers();
         const hotels = LocalDB.getHotels();
@@ -383,26 +958,751 @@
         document.getElementById('statIngresos').textContent = 'Consultar reportes financieros';
       }
 
-      loadStats();
+      function refreshCurrentSection() {
+        loadSectionData(activeSection);
+        loadStats();
+      }
 
-      // Cerrar sesión
-      document.getElementById('adminLogoutBtn').addEventListener('click', function() {
-        if (confirm('¿Deseas cerrar sesión?')) {
-          AuthService.logout();
-          window.location.href = 'index.html';
+      function loadUsuarios() {
+        bindSectionTools('usuariosTools', [
+          { action: 'usuario-add', className: 'admin-btn-primary', label: 'Agregar usuario', cap: 'usuarios.manage' },
+          { action: 'empleado-add', className: 'admin-btn-primary', label: 'Agregar empleado', cap: 'usuarios.manage' },
+          { action: 'usuario-refresh', className: 'admin-btn-secondary', label: 'Actualizar lista' },
+        ]);
+
+        const users = LocalDB.getUsers();
+        renderCards('usuariosGrid', users, function(user) {
+          return '<article class="admin-card">' +
+            '<h3>' + escapeHtml((user.nombre || '') + ' ' + (user.apellido || '')) + '</h3>' +
+            '<p><strong>Usuario:</strong> ' + escapeHtml(user.username) + '</p>' +
+            '<p><strong>Correo:</strong> ' + escapeHtml(user.email) + '</p>' +
+            '<p><strong>Rol:</strong> ' + escapeHtml(user.role || 'Usuario') + '</p>' +
+            '<p><strong>Permisos extra:</strong> ' + escapeHtml(permissionsToText(user.customPermissions)) + '</p>' +
+            (can('usuarios.manage')
+              ? '<div class="admin-card-actions">' +
+                '<button class="admin-btn admin-btn-secondary" data-action="usuario-role" data-id="' + user.id + '">Cambiar rol</button>' +
+                '<button class="admin-btn admin-btn-secondary" data-action="usuario-perms" data-id="' + user.id + '">Permisos</button>' +
+                '<button class="admin-btn admin-btn-secondary" data-action="usuario-pass" data-id="' + user.id + '">Reset clave</button>' +
+                '<button class="admin-btn admin-btn-danger" data-action="usuario-del" data-id="' + user.id + '">Eliminar</button>' +
+                '</div>'
+              : '') +
+            '</article>';
+        });
+      }
+
+      function loadHoteles() {
+        bindSectionTools('hotelesTools', [
+          { action: 'hotel-add', className: 'admin-btn-primary', label: 'Agregar hotel', cap: 'hoteles.manage' },
+          { action: 'hotel-refresh', className: 'admin-btn-secondary', label: 'Actualizar lista' },
+        ]);
+
+        const hotels = LocalDB.getHotels();
+        renderCards('hotelesGrid', hotels, function(hotel) {
+          return '<article class="admin-card">' +
+            '<h3>' + escapeHtml(hotel.nombre) + '</h3>' +
+            '<p><strong>Zona:</strong> ' + escapeHtml(hotel.zona || 'N/D') + '</p>' +
+            '<p><strong>Categoria:</strong> ' + starsMarkup(hotel.tipo) + '</p>' +
+            '<p><strong>Direccion:</strong> ' + escapeHtml(hotel.direccion || 'N/D') + '</p>' +
+            '<p><strong>Contacto:</strong> ' + escapeHtml((hotel.telefono || '-') + ' / ' + (hotel.email || '-')) + '</p>' +
+            (can('hoteles.manage')
+              ? '<div class="admin-card-actions">' +
+                '<button class="admin-btn admin-btn-secondary" data-action="hotel-edit" data-id="' + hotel.id + '">Editar</button>' +
+                '<button class="admin-btn admin-btn-danger" data-action="hotel-del" data-id="' + hotel.id + '">Eliminar</button>' +
+                '</div>'
+              : '') +
+            '</article>';
+        });
+      }
+
+      function loadAgencias() {
+        bindSectionTools('agenciasTools', [
+          { action: 'agencia-add', className: 'admin-btn-primary', label: 'Agregar agencia', cap: 'agencias.manage' },
+          { action: 'agencia-refresh', className: 'admin-btn-secondary', label: 'Actualizar lista' },
+        ]);
+
+        const agencies = LocalDB.getAgencies();
+        renderCards('agenciasGrid', agencies, function(agency) {
+          return '<article class="admin-card">' +
+            '<h3>' + escapeHtml(agency.nombre) + '</h3>' +
+            '<p><strong>Especialidad:</strong> ' + escapeHtml(agency.especialidad || 'General') + '</p>' +
+            '<p><strong>Telefono:</strong> ' + escapeHtml(agency.telefono || '-') + '</p>' +
+            '<p><strong>Correo:</strong> ' + escapeHtml(agency.email || '-') + '</p>' +
+            (can('agencias.manage')
+              ? '<div class="admin-card-actions">' +
+                '<button class="admin-btn admin-btn-secondary" data-action="agencia-edit" data-id="' + agency.id + '">Editar</button>' +
+                '<button class="admin-btn admin-btn-danger" data-action="agencia-del" data-id="' + agency.id + '">Eliminar</button>' +
+                '</div>'
+              : '') +
+            '</article>';
+        });
+      }
+
+      function loadEventos() {
+        bindSectionTools('eventosTools', [
+          { action: 'evento-add', className: 'admin-btn-primary', label: 'Agregar evento', cap: 'eventos.create' },
+          { action: 'evento-refresh', className: 'admin-btn-secondary', label: 'Actualizar lista' },
+        ]);
+
+        const events = LocalDB.getEvents();
+        renderCards('eventosGrid', events, function(eventItem) {
+          return '<article class="admin-card">' +
+            '<h3>' + escapeHtml(eventItem.nombre) + '</h3>' +
+            '<p><strong>Categoria:</strong> ' + escapeHtml(eventItem.categoria || '-') + '</p>' +
+            '<p><strong>Fecha:</strong> ' + escapeHtml((eventItem.fecha || '-') + ' ' + (eventItem.hora || '')) + '</p>' +
+            '<p><strong>Lugar:</strong> ' + escapeHtml(eventItem.lugar || '-') + '</p>' +
+            '<div class="admin-card-actions">' +
+            (can('eventos.edit') ? '<button class="admin-btn admin-btn-secondary" data-action="evento-edit" data-id="' + eventItem.id + '">Editar</button>' : '') +
+            (can('eventos.delete') ? '<button class="admin-btn admin-btn-danger" data-action="evento-del" data-id="' + eventItem.id + '">Eliminar</button>' : '') +
+            '</div>' +
+            '</article>';
+        });
+      }
+
+      function withStatus(row) {
+        if (row && row.status) return row;
+        return Object.assign({}, row, { status: 'Pendiente' });
+      }
+
+      function saveRequests(rows) {
+        LocalDB.saveContactRequests(rows);
+      }
+
+      function loadReservas() {
+        bindSectionTools('reservasTools', [
+          { action: 'reservas-refresh', className: 'admin-btn-secondary', label: 'Actualizar lista' },
+        ]);
+
+        const requests = LocalDB.getContactRequests().map(withStatus);
+        const reservas = requests.filter(function(item) {
+          const topic = normalizeToken(item.tema);
+          return topic.includes('hotel') || topic.includes('reserva') || topic.includes('agencia');
+        });
+
+        if (!reservas.length) {
+          showEmpty('reservasGrid', 'Aun no hay solicitudes de reserva para gestionar.');
+          return;
         }
+
+        renderCards('reservasGrid', reservas, function(item) {
+          return '<article class="admin-card">' +
+            '<h3>Solicitud #' + escapeHtml(item.id) + '</h3>' +
+            '<p><strong>Nombre:</strong> ' + escapeHtml(item.nombre || '-') + '</p>' +
+            '<p><strong>Email:</strong> ' + escapeHtml(item.email || '-') + '</p>' +
+            '<p><strong>Tema:</strong> ' + escapeHtml(item.tema || '-') + '</p>' +
+            '<p><strong>Estado:</strong> ' + escapeHtml(item.status || 'Pendiente') + '</p>' +
+            '<div class="admin-card-actions">' +
+            (can('solicitudes.update') ? '<button class="admin-btn admin-btn-secondary" data-action="req-toggle" data-id="' + item.id + '">Cambiar estado</button>' : '') +
+            (can('solicitudes.delete') ? '<button class="admin-btn admin-btn-danger" data-action="req-del" data-id="' + item.id + '">Eliminar</button>' : '') +
+            '</div>' +
+            '</article>';
+        });
+      }
+
+      function loadContactos() {
+        bindSectionTools('contactosTools', [
+          { action: 'contactos-refresh', className: 'admin-btn-secondary', label: 'Actualizar lista' },
+        ]);
+
+        const contacts = LocalDB.getContactRequests().map(withStatus);
+        renderCards('contactosGrid', contacts, function(item) {
+          return '<article class="admin-card">' +
+            '<h3>' + escapeHtml(item.nombre || 'Sin nombre') + '</h3>' +
+            '<p><strong>Correo:</strong> ' + escapeHtml(item.email || '-') + '</p>' +
+            '<p><strong>Telefono:</strong> ' + escapeHtml(item.telefono || '-') + '</p>' +
+            '<p><strong>Tema:</strong> ' + escapeHtml(item.tema || '-') + '</p>' +
+            '<p><strong>Estado:</strong> ' + escapeHtml(item.status || 'Pendiente') + '</p>' +
+            '<p><strong>Mensaje:</strong> ' + escapeHtml(item.mensaje || '-') + '</p>' +
+            '<div class="admin-card-actions">' +
+            (can('solicitudes.update') ? '<button class="admin-btn admin-btn-secondary" data-action="req-toggle" data-id="' + item.id + '">Cambiar estado</button>' : '') +
+            (can('solicitudes.delete') ? '<button class="admin-btn admin-btn-danger" data-action="req-del" data-id="' + item.id + '">Eliminar</button>' : '') +
+            '</div>' +
+            '</article>';
+        });
+      }
+
+      function loadReportes() {
+        bindSectionTools('reportesTools', [
+          { action: 'reportes-refresh', className: 'admin-btn-secondary', label: 'Actualizar reporte', cap: 'reportes.view' },
+        ]);
+
+        const users = LocalDB.getUsers();
+        const hotels = LocalDB.getHotels();
+        const agencies = LocalDB.getAgencies();
+        const events = LocalDB.getEvents();
+        const requests = LocalDB.getContactRequests().map(withStatus);
+
+        const byRole = users.reduce(function(acc, user) {
+          const key = user.role || 'Usuario';
+          acc[key] = (acc[key] || 0) + 1;
+          return acc;
+        }, {});
+
+        const pending = requests.filter(function(row) { return normalizeToken(row.status) !== 'atendido'; }).length;
+        const attended = requests.length - pending;
+
+        const reportRows = [
+          { icon: iconSvg('chart'), title: 'Usuarios por rol', text: Object.keys(byRole).map(function(role) { return role + ': ' + byRole[role]; }).join(' | ') || 'Sin datos.' },
+          { icon: iconSvg('hotel'), title: 'Oferta turistica', text: hotels.length + ' hoteles, ' + agencies.length + ' agencias y ' + events.length + ' eventos registrados.' },
+          { icon: iconSvg('message'), title: 'Gestion de solicitudes', text: attended + ' atendidas y ' + pending + ' pendientes.' },
+        ];
+
+        renderCards('reportesGrid', reportRows, function(row) {
+          return '<article class="admin-card">' +
+            '<div class="admin-card-icon">' + row.icon + '</div>' +
+            '<h3>' + escapeHtml(row.title) + '</h3>' +
+            '<p>' + escapeHtml(row.text) + '</p>' +
+            '</article>';
+        });
+      }
+
+      function loadSectionData(section) {
+        if (section === 'dashboard') loadStats();
+        if (section === 'usuarios') loadUsuarios();
+        if (section === 'hoteles') loadHoteles();
+        if (section === 'agencias') loadAgencias();
+        if (section === 'eventos') loadEventos();
+        if (section === 'reservas') loadReservas();
+        if (section === 'contactos') loadContactos();
+        if (section === 'reportes') loadReportes();
+      }
+
+      function promptField(label, initialValue, required) {
+        const value = window.prompt(label, initialValue || '');
+        if (value === null) return null;
+        const clean = value.trim();
+        if (required && !clean) {
+          showMessage('Campo obligatorio: ' + label, 'error');
+          return null;
+        }
+        return clean;
+      }
+
+      function handleUsersTools(action) {
+        if (!can('usuarios.manage')) {
+          showMessage('Tu rol no tiene permisos para administrar usuarios.', 'error');
+          return;
+        }
+        if (action === 'usuario-refresh') {
+          loadUsuarios();
+          return;
+        }
+        if (action !== 'usuario-add' && action !== 'empleado-add') return;
+        showUserForm('create', action === 'empleado-add' ? 'Empleado' : 'Usuario', null);
+      }
+
+      function handleUserCardAction(action, id) {
+        if (!can('usuarios.manage')) {
+          showMessage('Tu rol no tiene permisos para esta accion.', 'error');
+          return;
+        }
+        const users = LocalDB.getUsers();
+        const idx = users.findIndex(function(u) { return String(u.id) === String(id); });
+        if (idx < 0) return;
+        const user = users[idx];
+
+        if (action === 'usuario-role') {
+          const nextRole = promptField('Nuevo rol para ' + user.username + ' (Usuario, Empleado, Admin, Dueño)', user.role || 'Usuario', true);
+          if (!nextRole || !allowedRoles.includes(nextRole)) {
+            showMessage('Rol invalido.', 'error');
+            return;
+          }
+          user.role = nextRole;
+          users[idx] = user;
+          LocalDB.saveUsers(users);
+          showMessage('Rol actualizado.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        if (action === 'usuario-perms') {
+          const current = permissionsToText(user.customPermissions);
+          const input = promptField(
+            'Permisos extra para ' + user.username + ' (coma separada). Deja vacio para quitar todos.\nOpciones: ' + PERMISSION_CATALOG.join(', '),
+            current === 'Sin permisos extra' ? '' : current,
+            false
+          );
+          if (input === null) return;
+          user.customPermissions = parsePermissionList(input);
+          users[idx] = user;
+          LocalDB.saveUsers(users);
+          showMessage('Permisos actualizados.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        if (action === 'usuario-pass') {
+          const newPass = promptField('Nueva clave para ' + user.username, user.password || 'Temporal2026', true);
+          if (!newPass) return;
+          user.password = newPass;
+          user.updatedAt = new Date().toISOString();
+          users[idx] = user;
+          LocalDB.saveUsers(users);
+          showMessage('Clave actualizada.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        if (action === 'usuario-del') {
+          if (Number(user.id) === Number(session.userId)) {
+            showMessage('No puedes eliminar tu propia cuenta activa.', 'error');
+            return;
+          }
+          if (!window.confirm('Eliminar usuario ' + user.username + '?')) return;
+          const nextUsers = users.filter(function(row) { return String(row.id) !== String(id); });
+          LocalDB.saveUsers(nextUsers);
+          showMessage('Usuario eliminado.', 'success');
+          refreshCurrentSection();
+        }
+      }
+
+      function handleHotelsTools(action) {
+        if (!can('hoteles.manage')) {
+          showMessage('Tu rol no tiene permisos para administrar hoteles.', 'error');
+          return;
+        }
+        if (action === 'hotel-refresh') {
+          loadHoteles();
+          return;
+        }
+        if (action !== 'hotel-add') return;
+        showHotelForm('create', null);
+      }
+
+      function handleHotelCardAction(action, id) {
+        if (!can('hoteles.manage')) {
+          showMessage('Tu rol no tiene permisos para esta accion.', 'error');
+          return;
+        }
+        const rows = LocalDB.getHotels();
+        const idx = rows.findIndex(function(row) { return String(row.id) === String(id); });
+        if (idx < 0) return;
+        const item = rows[idx];
+
+        if (action === 'hotel-del') {
+          if (!window.confirm('Eliminar hotel ' + item.nombre + '?')) return;
+          LocalDB.saveHotels(rows.filter(function(row) { return String(row.id) !== String(id); }));
+          showMessage('Hotel eliminado.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        if (action === 'hotel-edit') {
+          showHotelForm('edit', item);
+          return;
+        }
+      }
+
+      function submitUserModal() {
+        const fd = new FormData(modalForm);
+        const nombre = String(fd.get('nombre') || '').trim();
+        const apellido = String(fd.get('apellido') || '').trim();
+        const username = String(fd.get('username') || '').trim();
+        const email = String(fd.get('email') || '').trim();
+        const password = String(fd.get('password') || '').trim();
+        const role = String(fd.get('role') || '').trim();
+        const customPermissions = collectCheckedPermissions();
+
+        if (!nombre || !apellido || !username || !email || !password || !role) {
+          showMessage('Completa todos los campos obligatorios.', 'error');
+          return;
+        }
+        if (!allowedRoles.includes(role)) {
+          showMessage('Rol invalido.', 'error');
+          return;
+        }
+        if (!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password)) {
+          showMessage('La clave debe tener 8+ caracteres, una mayuscula y un numero.', 'error');
+          return;
+        }
+
+        const users = LocalDB.getUsers();
+        if (modalState.mode === 'create') {
+          const exists = users.some(function(u) {
+            return normalizeToken(u.username) === normalizeToken(username) || normalizeToken(u.email) === normalizeToken(email);
+          });
+          if (exists) {
+            showMessage('Ese usuario o correo ya existe.', 'error');
+            return;
+          }
+
+          users.push({
+            id: nextId(users),
+            username: username,
+            email: email,
+            password: password,
+            nombre: nombre,
+            apellido: apellido,
+            role: role,
+            customPermissions: customPermissions,
+            createdAt: new Date().toISOString(),
+          });
+          LocalDB.saveUsers(users);
+          closeModal();
+          showMessage(role === 'Empleado' ? 'Empleado creado correctamente.' : 'Usuario creado correctamente.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        const idx = users.findIndex(function(u) { return String(u.id) === String(modalState.recordId); });
+        if (idx < 0) {
+          showMessage('No se encontro el usuario.', 'error');
+          return;
+        }
+        users[idx] = Object.assign({}, users[idx], {
+          nombre: nombre,
+          apellido: apellido,
+          password: password,
+          role: role,
+          customPermissions: customPermissions,
+          updatedAt: new Date().toISOString(),
+        });
+        LocalDB.saveUsers(users);
+        closeModal();
+        showMessage('Usuario actualizado.', 'success');
+        refreshCurrentSection();
+      }
+
+      function submitHotelModal() {
+        const fd = new FormData(modalForm);
+        const nombre = String(fd.get('nombre') || '').trim();
+        const zona = String(fd.get('zona') || '').trim();
+        const categoria = String(fd.get('categoria') || '').trim();
+        const puntuacion = String(fd.get('puntuacion') || '').trim();
+        if (!nombre || !zona || !categoria) {
+          showMessage('Completa nombre, zona y categoria.', 'error');
+          return;
+        }
+
+        const payload = {
+          nombre: nombre,
+          zona: zona,
+          tipo: starsToType(categoria),
+          puntuacion: puntuacion || '4',
+          telefono: String(fd.get('telefono') || '').trim(),
+          email: String(fd.get('email') || '').trim(),
+          direccion: String(fd.get('direccion') || '').trim(),
+          precioDesde: String(fd.get('precioDesde') || '').trim() || '$250.000',
+          destaque: String(fd.get('destaque') || '').trim() || 'Alojamiento recomendado',
+          imagen: String(fd.get('imagen') || '').trim() || 'assets/imgs/servicios_turisticos_img.jpg',
+        };
+
+        const rows = LocalDB.getHotels();
+        if (modalState.mode === 'create') {
+          rows.push(Object.assign({ id: nextId(rows) }, payload));
+          LocalDB.saveHotels(rows);
+          closeModal();
+          showMessage('Hotel agregado.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        const idx = rows.findIndex(function(row) { return String(row.id) === String(modalState.recordId); });
+        if (idx < 0) {
+          showMessage('No se encontro el hotel.', 'error');
+          return;
+        }
+        rows[idx] = Object.assign({}, rows[idx], payload);
+        LocalDB.saveHotels(rows);
+        closeModal();
+        showMessage('Hotel actualizado.', 'success');
+        refreshCurrentSection();
+      }
+
+      function submitAgencyModal() {
+        const fd = new FormData(modalForm);
+        const nombre = String(fd.get('nombre') || '').trim();
+        if (!nombre) {
+          showMessage('El nombre de la agencia es obligatorio.', 'error');
+          return;
+        }
+
+        const payload = {
+          nombre: nombre,
+          especialidad: String(fd.get('especialidad') || '').trim() || 'Asesoria de viaje',
+          telefono: String(fd.get('telefono') || '').trim(),
+          email: String(fd.get('email') || '').trim(),
+          horario: String(fd.get('horario') || '').trim(),
+        };
+
+        const rows = LocalDB.getAgencies();
+        if (modalState.mode === 'create') {
+          rows.push(Object.assign({ id: nextId(rows) }, payload));
+          LocalDB.saveAgencies(rows);
+          closeModal();
+          showMessage('Agencia agregada.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        const idx = rows.findIndex(function(row) { return String(row.id) === String(modalState.recordId); });
+        if (idx < 0) {
+          showMessage('No se encontro la agencia.', 'error');
+          return;
+        }
+        rows[idx] = Object.assign({}, rows[idx], payload);
+        LocalDB.saveAgencies(rows);
+        closeModal();
+        showMessage('Agencia actualizada.', 'success');
+        refreshCurrentSection();
+      }
+
+      function submitEventModal() {
+        const fd = new FormData(modalForm);
+        const nombre = String(fd.get('nombre') || '').trim();
+        const categoria = String(fd.get('categoria') || '').trim();
+        const fecha = String(fd.get('fecha') || '').trim();
+        const lugar = String(fd.get('lugar') || '').trim();
+        if (!nombre || !categoria || !fecha || !lugar) {
+          showMessage('Completa nombre, categoria, fecha y lugar.', 'error');
+          return;
+        }
+
+        const payload = {
+          nombre: nombre,
+          categoria: categoria,
+          fecha: fecha,
+          hora: String(fd.get('hora') || '').trim() || '18:00',
+          lugar: lugar,
+          ubicacion: String(fd.get('ubicacion') || '').trim() || 'Barranquilla',
+          descripcion: String(fd.get('descripcion') || '').trim() || 'Evento local',
+        };
+
+        const rows = LocalDB.getEvents();
+        if (modalState.mode === 'create') {
+          rows.push(Object.assign({ id: nextId(rows) }, payload));
+          LocalDB.saveEvents(rows);
+          closeModal();
+          showMessage('Evento agregado.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        const idx = rows.findIndex(function(row) { return String(row.id) === String(modalState.recordId); });
+        if (idx < 0) {
+          showMessage('No se encontro el evento.', 'error');
+          return;
+        }
+        rows[idx] = Object.assign({}, rows[idx], payload);
+        LocalDB.saveEvents(rows);
+        closeModal();
+        showMessage('Evento actualizado.', 'success');
+        refreshCurrentSection();
+      }
+
+      function handleAgenciesTools(action) {
+        if (!can('agencias.manage')) {
+          showMessage('Tu rol no tiene permisos para administrar agencias.', 'error');
+          return;
+        }
+        if (action === 'agencia-refresh') {
+          loadAgencias();
+          return;
+        }
+        if (action !== 'agencia-add') return;
+        showAgencyForm('create', null);
+      }
+
+      function handleAgencyCardAction(action, id) {
+        if (!can('agencias.manage')) {
+          showMessage('Tu rol no tiene permisos para esta accion.', 'error');
+          return;
+        }
+        const rows = LocalDB.getAgencies();
+        const idx = rows.findIndex(function(row) { return String(row.id) === String(id); });
+        if (idx < 0) return;
+        const item = rows[idx];
+
+        if (action === 'agencia-del') {
+          if (!window.confirm('Eliminar agencia ' + item.nombre + '?')) return;
+          LocalDB.saveAgencies(rows.filter(function(row) { return String(row.id) !== String(id); }));
+          showMessage('Agencia eliminada.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        if (action === 'agencia-edit') {
+          showAgencyForm('edit', item);
+          return;
+        }
+      }
+
+      function handleEventsTools(action) {
+        if (action === 'evento-add' && !can('eventos.create')) {
+          showMessage('Tu rol no puede crear eventos.', 'error');
+          return;
+        }
+        if (action === 'evento-refresh') {
+          loadEventos();
+          return;
+        }
+        if (action !== 'evento-add') return;
+        showEventForm('create', null);
+      }
+
+      function handleEventCardAction(action, id) {
+        const rows = LocalDB.getEvents();
+        const idx = rows.findIndex(function(row) { return String(row.id) === String(id); });
+        if (idx < 0) return;
+        const item = rows[idx];
+
+        if (action === 'evento-del') {
+          if (!can('eventos.delete')) {
+            showMessage('Tu rol no puede eliminar eventos.', 'error');
+            return;
+          }
+          if (!window.confirm('Eliminar evento ' + item.nombre + '?')) return;
+          LocalDB.saveEvents(rows.filter(function(row) { return String(row.id) !== String(id); }));
+          showMessage('Evento eliminado.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        if (action === 'evento-edit') {
+          if (!can('eventos.edit')) {
+            showMessage('Tu rol no puede editar eventos.', 'error');
+            return;
+          }
+          showEventForm('edit', item);
+          return;
+        }
+      }
+
+      function handleRequestAction(action, id) {
+        const rows = LocalDB.getContactRequests().map(withStatus);
+        const idx = rows.findIndex(function(row) { return String(row.id) === String(id); });
+        if (idx < 0) return;
+
+        if (action === 'req-del') {
+          if (!can('solicitudes.delete')) {
+            showMessage('Tu rol no puede eliminar solicitudes.', 'error');
+            return;
+          }
+          if (!window.confirm('Eliminar solicitud #' + id + '?')) return;
+          saveRequests(rows.filter(function(row) { return String(row.id) !== String(id); }));
+          showMessage('Solicitud eliminada.', 'success');
+          refreshCurrentSection();
+          return;
+        }
+
+        if (action === 'req-toggle') {
+          if (!can('solicitudes.update')) {
+            showMessage('Tu rol no puede actualizar solicitudes.', 'error');
+            return;
+          }
+          rows[idx].status = normalizeToken(rows[idx].status) === 'atendido' ? 'Pendiente' : 'Atendido';
+          saveRequests(rows);
+          showMessage('Estado actualizado.', 'success');
+          refreshCurrentSection();
+        }
+      }
+
+      function applyRoleVisibility(role) {
+        menuLinks.forEach(function(link) {
+          const allowed = roleAllowed(link.dataset.role, role);
+          link.parentElement.style.display = allowed ? '' : 'none';
+        });
+
+        document.querySelectorAll('.admin-restricted').forEach(function(el) {
+          const allowed = roleAllowed(el.dataset.role, role);
+          el.classList.toggle('admin-show', allowed);
+        });
+      }
+
+      function sectionAllowed(section, role) {
+        const link = menuLinks.find(function(item) { return item.dataset.section === section; });
+        if (!link) return false;
+        return roleAllowed(link.dataset.role, role);
+      }
+
+      function activateSection(section) {
+        const target = sectionAllowed(section, session.role) ? section : 'dashboard';
+        activeSection = target;
+
+        sectionKeys.forEach(function(key) {
+          const sectionEl = document.getElementById(key + '-section');
+          if (!sectionEl) return;
+          sectionEl.classList.toggle('admin-active', key === target);
+        });
+
+        menuLinks.forEach(function(link) {
+          link.classList.toggle('active', link.dataset.section === target);
+        });
+
+        loadSectionData(target);
+      }
+
+      document.addEventListener('click', function(e) {
+        const closeTrigger = e.target.closest('[data-action="modal-close"]');
+        if (closeTrigger) {
+          closeModal();
+          return;
+        }
+
+        const toolButton = e.target.closest('.admin-section-tools .admin-btn');
+        if (toolButton) {
+          const action = toolButton.dataset.action || '';
+          if (action.startsWith('usuario-')) handleUsersTools(action);
+          if (action.startsWith('hotel-')) handleHotelsTools(action);
+          if (action.startsWith('agencia-')) handleAgenciesTools(action);
+          if (action.startsWith('evento-')) handleEventsTools(action);
+          if (action.startsWith('reservas-')) loadReservas();
+          if (action.startsWith('contactos-')) loadContactos();
+          if (action.startsWith('reportes-')) loadReportes();
+          return;
+        }
+
+        const cardButton = e.target.closest('.admin-card .admin-btn');
+        if (!cardButton) return;
+        const action = cardButton.dataset.action || '';
+        const id = cardButton.dataset.id;
+        if (!id) return;
+        if (action.startsWith('usuario-')) handleUserCardAction(action, id);
+        if (action.startsWith('hotel-')) handleHotelCardAction(action, id);
+        if (action.startsWith('agencia-')) handleAgencyCardAction(action, id);
+        if (action.startsWith('evento-')) handleEventCardAction(action, id);
+        if (action.startsWith('req-')) handleRequestAction(action, id);
       });
 
-      // Navegación
-      document.querySelectorAll('.admin-menu-link').forEach(link => {
+      modalForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (modalState.type === 'user') submitUserModal();
+        if (modalState.type === 'hotel') submitHotelModal();
+        if (modalState.type === 'agency') submitAgencyModal();
+        if (modalState.type === 'event') submitEventModal();
+      });
+
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !modal.hidden) closeModal();
+      });
+
+      document.getElementById('adminUserName').textContent = (session.nombre || '') + ' ' + (session.apellido || '');
+      document.getElementById('adminUserRole').textContent = '[' + String(session.role || '').toUpperCase() + ']';
+      document.getElementById('adminWelcomeMsg').textContent = 'Bienvenido, ' + (session.nombre || session.username || 'usuario') + '. Administra la plataforma desde este panel.';
+
+      applyRoleVisibility(session.role);
+
+      menuLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
           e.preventDefault();
-          const section = this.dataset.section;
-          document.querySelectorAll('.admin-menu-link').forEach(l => l.classList.remove('active'));
-          this.classList.add('active');
-          // Aquí puedes implementar cambio de contenido
+          const section = this.dataset.section || 'dashboard';
+          window.location.hash = section;
+          activateSection(section);
         });
       });
+
+      document.getElementById('adminLogoutBtn').addEventListener('click', function() {
+        if (!window.confirm('Deseas cerrar sesion?')) return;
+        AuthService.logout();
+        window.location.href = 'index.html';
+      });
+
+      window.addEventListener('hashchange', function() {
+        const section = (window.location.hash || '').replace('#', '') || 'dashboard';
+        activateSection(section);
+      });
+
+      const initialSection = (window.location.hash || '').replace('#', '') || 'dashboard';
+      activateSection(initialSection);
     });
   </script>
 </body>
